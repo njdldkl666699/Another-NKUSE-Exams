@@ -95,8 +95,8 @@ Another-NKUSE-Exams
 2. **启用 GitHub Pages**：
 
    - 进入仓库的 Settings → Pages
-   - Source 选择 "Deploy from a branch"
-   - Branch 选择 "main"，点击 Save
+   - Source 选择 "GitHub Actions"
+   - 点击 "Save"
 
 3. **配置下载链接**：
    编辑 `index.html` 文件，将其中的 `njdldkl666699` 替换为您的 GitHub 用户名
@@ -109,20 +109,6 @@ Another-NKUSE-Exams
 如需本地测试动态文件结构：
 
 ```bash
-# 生成文件结构
-node generate-structure.js
-
-# 启动本地服务器
-npm run serve
-
-# 访问网站
-# 浏览器打开 http://localhost:8000
-```
-
-或
-
-```bash
-# 直接执行上面两条命令
 npm run dev
 ```
 
