@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>南开大学软件学院考试资料库</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        padding: 20px;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+      }
+
+      .header {
+        background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+        color: white;
+        padding: 30px;
+        text-align: center;
+      }
+
+      .header h1 {
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+        font-weight: 700;
+      }
+
+      .header p {
+        font-size: 1.2rem;
+        opacity: 0.9;
+      }
+
+      .file-explorer {
+        padding: 30px;
+      }
+
+      .folder {
+        margin-bottom: 5px;
+      }
+
+      .folder-header {
+        display: flex;
+        align-items: center;
+        padding: 12px 15px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        user-select: none;
+      }
+
+      .folder-header:hover {
+        background: #e2e8f0;
+        border-color: #cbd5e0;
+      }
+
+      .folder-icon {
+        margin-right: 10px;
+        font-size: 18px;
+        transition: transform 0.2s ease;
+      }
+
+      .folder-icon.expanded {
+        transform: rotate(90deg);
+      }
+
+      .folder-name {
+        font-weight: 600;
+        color: #2d3748;
+        font-size: 16px;
+      }
+
+      .folder-content {
+        margin-left: 20px;
+        margin-top: 10px;
+        border-left: 2px solid #e2e8f0;
+        padding-left: 20px;
+        display: none;
+      }
+
+      .folder-content.expanded {
+        display: block;
+      }
+
+      .file {
+        display: flex;
+        align-items: center;
+        padding: 8px 15px;
+        margin-bottom: 5px;
+        background: white;
+        border: 1px solid #e2e8f0;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .file:hover {
+        background: #edf2f7;
+        border-color: #cbd5e0;
+        transform: translateX(5px);
+      }
+
+      .file-icon {
+        margin-right: 10px;
+        font-size: 14px;
+        color: #718096;
+      }
+
+      .file-name {
+        color: #4a5568;
+        font-size: 14px;
+      }
+
+      .file-extension {
+        margin-left: auto;
+        padding: 2px 8px;
+        background: #e2e8f0;
+        border-radius: 12px;
+        font-size: 12px;
+        color: #718096;
+        font-weight: 500;
+      }
+
+      .file-extension.pdf {
+        background: #fed7d7;
+        color: #c53030;
+      }
+      .file-extension.doc,
+      .file-extension.docx {
+        background: #bee3f8;
+        color: #2b6cb0;
+      }
+      .file-extension.txt {
+        background: #c6f6d5;
+        color: #2f855a;
+      }
+      .file-extension.jpg,
+      .file-extension.jpeg,
+      .file-extension.png {
+        background: #fbb6ce;
+        color: #b83280;
+      }
+
+      .loading {
+        text-align: center;
+        padding: 40px;
+        color: #718096;
+      }
+
+      .stats {
+        background: #f7fafc;
+        padding: 20px;
+        border-top: 1px solid #e2e8f0;
+        display: flex;
+        justify-content: space-around;
+        text-align: center;
+      }
+
+      .stat-item {
+        color: #4a5568;
+      }
+
+      .stat-number {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #4f46e5;
+      }
+
+      .search-box {
+        margin-bottom: 20px;
+        padding: 12px;
+        width: 100%;
+        border: 2px solid #e2e8f0;
+        border-radius: 8px;
+        font-size: 16px;
+        transition: border-color 0.2s ease;
+      }
+
+      .search-box:focus {
+        outline: none;
+        border-color: #4f46e5;
+      }
+
+      .notice {
+        background: #fef5e7;
+        border: 1px solid #f6ad55;
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 20px;
+        color: #744210;
+      }
+
+      .notice-title {
+        font-weight: 600;
+        margin-bottom: 5px;
+      }
+
+      @media (max-width: 768px) {
+        .header h1 {
+          font-size: 2rem;
+        }
+
+        .header p {
+          font-size: 1rem;
+        }
+
+        .file-explorer {
+          padding: 20px;
+        }
+
+        .stats {
+          flex-direction: column;
+          gap: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>📚 南开大学软件学院</h1>
+        <p>考试资料库 - 历年试卷与学习资料</p>
+      </div>
+
+      <div class="file-explorer">
+        <div class="notice">
+          <div class="notice-title">🔧 使用说明</div>
+          <div>
+            1. 点击文件夹可以展开/收起内容<br />
+            2. 点击文件可以下载（需要正确配置GitHub仓库链接）<br />
+            3. 使用搜索框快速查找文件或目录<br />
+            4. 首次部署时请更新代码中的GitHub用户名和仓库名
+          </div>
+        </div>
+
+        <input
+          type="text"
+          class="search-box"
+          placeholder="🔍 搜索文件或目录..."
+          id="searchBox"
+        />
+        <div id="fileTree">
+          <div class="loading">
+            <div>📁 正在加载目录结构...</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stats">
+        <div class="stat-item">
+          <div class="stat-number" id="folderCount">0</div>
+          <div>目录数</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" id="fileCount">0</div>
+          <div>文件数</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" id="loadStatus">准备中</div>
+          <div>状态</div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // 尝试动态加载文件结构，如果失败则使用硬编码的结构
+      let fileStructure = null;
+
+      // 硬编码的目录结构（作为备用）
+      const fallbackFileStructure = {
+        软件专业课: {
+          大学物理: {
+            files: [
+              "00级电磁B卷答案.doc",
+              "01级计电磁A卷答案.doc",
+              "04级II-2期中试卷.doc",
+              "05级II-2期中试卷A答案.doc",
+              "07级II-2期中试卷答案.doc",
+              "18大物.doc",
+              "2016大一下大物考试原题..docx",
+              "2018.pdf",
+              "2019-2020答案.pdf",
+              "2019.pdf",
+              "2019A卷答案（最终版）.doc",
+              "2020.pdf",
+              "2020A卷答案-final.docx",
+              "答案.doc",
+              "大物试卷整理.doc",
+              "南开大学《大学物理 》2018-2019学年期末试卷.pdf",
+              "南开大学《大学物理》笔记-复习笔记.pdf",
+              "南开大学《大学物理II》2017-2018学年期末试卷A卷.pdf",
+              "南开大学《大学物理II》2019-2020学年期末试卷A卷.pdf",
+              "南开大学《大学物理II》2019年期末试卷A.pdf",
+              "南开大学《大学物理II》2019年期末试卷B.pdf",
+              "南开大学《大学物理II》2020年期末试卷A.pdf",
+            ],
+          },
+          概率论与数理统计: {
+            files: [
+              "2007—2008学年《概率论与数理统计》A卷.pdf",
+              "2007—2008学年《概率论与数理统计》A卷答案.pdf",
+              "2007—2008学年《概率论与数理统计》B卷.pdf",
+              "2007—2008学年《概率论与数理统计》B卷答案.pdf",
+              "2008—2009学年《概率论与数理统计》A卷.pdf",
+              "2008—2009学年《概率论与数理统计》A卷答案.pdf",
+              "2008—2009学年《概率论与数理统计》B卷.pdf",
+              "2008—2009学年《概率论与数理统计》B卷答案.pdf",
+              "2010—2011学年《概率论与数理统计》A卷.pdf",
+              "2010—2011学年《概率论与数理统计》A卷答案.pdf",
+              "2011—2012学年《概率论与数理统计》A卷.pdf",
+              "2011—2012学年《概率论与数理统计》A卷答案.pdf",
+              "2012—2013学年《概率论与数理统计》A卷.pdf",
+              "2012—2013学年《概率论与数理统计》A卷答案.pdf",
+              "2020—2021学年《概率论与数理统计》A卷.pdf",
+              "2020—2021学年《概率论与数理统计》B卷.pdf",
+              "南开大学《概率论与数理统计》试卷-2019--2020学年期末试卷.pdf",
+              "南开大学《概率论与数理统计》试卷-2020--2021学年期末试卷.pdf",
+            ],
+          },
+          机器学习: {
+            files: [
+              "机器学习考试重点.pdf",
+              "强子.doc",
+              "微信图片_20240610214221.jpg",
+              "微信图片_20240610214257.jpg",
+              "微信图片_20240610214258.jpg",
+              "微信图片_202406102142581.jpg",
+              "微信图片_202406102142582.jpg",
+              "微信图片_202406102142583.jpg",
+              "微信图片_20240610214259.jpg",
+              "微信图片_202406102142591.jpg",
+              "微信图片_202406102142592.jpg",
+              "微信图片_20240610214300.jpg",
+              "微信图片_202406102143001.jpg",
+              "微信图片_202406102143002.jpg",
+              "微信图片_202406102143003.jpg",
+            ],
+          },
+          计算机组成原理: {
+            files: [
+              "2008计算机组成原理期末考试A卷.doc",
+              "2009计算机组成原理期末考试A卷 (2).doc",
+              "2009计算机组成原理期末考试A卷.doc",
+              "2010计算机组成原理期末考试A卷.doc",
+              "2010年&2011年.docx",
+              "2012年计算机组成原理试卷浅析.doc",
+              "2017级_计算机组成原理试卷.doc",
+            ],
+          },
+          离散数学: { files: [] },
+          数据结构: { files: [] },
+          数据库系统原理: { files: [] },
+          算法导论: { files: [] },
+          线性代数: { files: [] },
+          "C、C++": { files: [] },
+          Java: { files: [] },
+        },
+        通识必修课: {
+          大学语文: { files: [] },
+          高等数学A: { files: [] },
+          马克思主义基本原理: { files: [] },
+          毛泽东思想和中国特色社会主义理论体系概论: { files: [] },
+          中国近现代史纲要: { files: [] },
+          files: [
+            "南开大学《大学英语》2022年期末试卷.pdf",
+            "扫描件_《南开大学2023级本科学生学则》测试题.pdf",
+            "英语四六级试卷（百度网盘）.txt",
+          ],
+        },
+      };
+
+      let folderCount = 0;
+      let fileCount = 0;
+
+      // 动态加载文件结构
+      async function loadFileStructure() {
+        try {
+          const response = await fetch("file-structure.json");
+          if (response.ok) {
+            const dynamicStructure = await response.json();
+            if (Object.keys(dynamicStructure).length > 0) {
+              fileStructure = dynamicStructure;
+              document.getElementById("loadStatus").textContent = "动态";
+              console.log("✅ 成功加载动态文件结构");
+              return true;
+            }
+          }
+        } catch (error) {
+          console.log("⚠️ 无法加载动态结构，使用预设结构:", error.message);
+        }
+
+        // 使用备用结构
+        fileStructure = fallbackFileStructure;
+        document.getElementById("loadStatus").textContent = "静态";
+        console.log("📁 使用预设文件结构");
+        return false;
+      }
+
+      function getFileExtension(filename) {
+        return filename.split(".").pop().toLowerCase();
+      }
+
+      function getFileIcon(extension) {
+        const icons = {
+          pdf: "📄",
+          doc: "📝",
+          docx: "📝",
+          txt: "📄",
+          jpg: "🖼️",
+          jpeg: "🖼️",
+          png: "🖼️",
+          gif: "🖼️",
+        };
+        return icons[extension] || "📄";
+      }
+
+      function createFileElement(fileName, path) {
+        const extension = getFileExtension(fileName);
+        const icon = getFileIcon(extension);
+
+        const fileDiv = document.createElement("div");
+        fileDiv.className = "file";
+        fileDiv.innerHTML = `
+                <span class="file-icon">${icon}</span>
+                <span class="file-name">${fileName}</span>
+                <span class="file-extension ${extension}">${extension.toUpperCase()}</span>
+            `;
+        fileDiv.onclick = () => {
+          // 构建GitHub原始文件URL - 请替换为您的实际GitHub用户名和仓库名
+          // 检查路径中是否已经包含了编码的字符
+          // 手动处理路径编码，确保斜杠不被编码
+          const pathSegments = path.split("/");
+          const encodedSegments = pathSegments.map((segment) =>
+            segment ? encodeURIComponent(segment) : segment
+          );
+          const encodedPath = encodedSegments.join("/");
+          // const githubUrl = `https://github.com/njdldkl666699/Another-NKUSE-Exams/raw/main/${encodedPath}`;
+          // 使用kkgithub.com镜像链接，加速国内访问
+          const githubUrl = `https://raw.kkgithub.com/njdldkl666699/Another-NKUSE-Exams/main/${encodedPath}`;
+          window.open(githubUrl, "_blank");
+        };
+
+        return fileDiv;
+      }
+
+      function createFolderElement(folderName, folderData, path = "") {
+        folderCount++;
+
+        const folderDiv = document.createElement("div");
+        folderDiv.className = "folder";
+
+        const folderHeader = document.createElement("div");
+        folderHeader.className = "folder-header";
+        folderHeader.innerHTML = `
+                <span class="folder-icon">▶</span>
+                <span class="folder-name">📁 ${folderName}</span>
+            `;
+
+        const folderContent = document.createElement("div");
+        folderContent.className = "folder-content"; // 添加子文件夹
+        Object.keys(folderData).forEach((key) => {
+          if (key !== "files" && typeof folderData[key] === "object") {
+            // 正确构建子文件夹路径
+            let subPath = "";
+            if (path) {
+              subPath = `${path}/${folderName}`;
+            } else {
+              subPath = folderName;
+            }
+            const subFolder = createFolderElement(
+              key,
+              folderData[key],
+              subPath
+            );
+            folderContent.appendChild(subFolder);
+          }
+        }); // 添加文件
+        if (folderData.files && Array.isArray(folderData.files)) {
+          folderData.files.forEach((fileName) => {
+            fileCount++;
+            // 正确构建文件路径
+            let filePath = "";
+            if (path) {
+              filePath = `${path}/${folderName}/${fileName}`;
+            } else {
+              filePath = `${folderName}/${fileName}`;
+            }
+            const fileElement = createFileElement(fileName, filePath);
+            folderContent.appendChild(fileElement);
+          });
+        }
+
+        folderHeader.onclick = () => {
+          const icon = folderHeader.querySelector(".folder-icon");
+          if (folderContent.classList.contains("expanded")) {
+            folderContent.classList.remove("expanded");
+            icon.classList.remove("expanded");
+          } else {
+            folderContent.classList.add("expanded");
+            icon.classList.add("expanded");
+          }
+        };
+
+        folderDiv.appendChild(folderHeader);
+        folderDiv.appendChild(folderContent);
+
+        return folderDiv;
+      }
+
+      function renderFileTree() {
+        const fileTree = document.getElementById("fileTree");
+        fileTree.innerHTML = "";
+
+        folderCount = 0;
+        fileCount = 0;
+
+        Object.keys(fileStructure).forEach((rootFolder) => {
+          const folderElement = createFolderElement(
+            rootFolder,
+            fileStructure[rootFolder]
+          );
+          fileTree.appendChild(folderElement);
+        });
+
+        // 更新统计信息
+        document.getElementById("folderCount").textContent = folderCount;
+        document.getElementById("fileCount").textContent = fileCount;
+      }
+
+      function searchFiles() {
+        const searchTerm = document
+          .getElementById("searchBox")
+          .value.toLowerCase();
+        const allFiles = document.querySelectorAll(".file");
+        const allFolders = document.querySelectorAll(".folder");
+
+        if (!searchTerm) {
+          // 显示所有内容
+          allFiles.forEach((file) => (file.style.display = "flex"));
+          allFolders.forEach((folder) => (folder.style.display = "block"));
+          return;
+        }
+
+        // 隐藏所有内容
+        allFiles.forEach((file) => (file.style.display = "none"));
+        allFolders.forEach((folder) => (folder.style.display = "none"));
+
+        // 显示匹配的文件和其父文件夹
+        allFiles.forEach((file) => {
+          const fileName = file
+            .querySelector(".file-name")
+            .textContent.toLowerCase();
+          if (fileName.includes(searchTerm)) {
+            file.style.display = "flex";
+            // 显示父文件夹
+            let parent = file.parentElement;
+            while (parent && !parent.classList.contains("file-explorer")) {
+              if (parent.classList.contains("folder")) {
+                parent.style.display = "block";
+                // 展开文件夹
+                const content = parent.querySelector(".folder-content");
+                const icon = parent.querySelector(".folder-icon");
+                if (content && icon) {
+                  content.classList.add("expanded");
+                  icon.classList.add("expanded");
+                }
+              }
+              parent = parent.parentElement;
+            }
+          }
+        });
+
+        // 显示匹配的文件夹
+        allFolders.forEach((folder) => {
+          const folderName = folder
+            .querySelector(".folder-name")
+            .textContent.toLowerCase();
+          if (folderName.includes(searchTerm)) {
+            folder.style.display = "block";
+            // 显示父文件夹
+            let parent = folder.parentElement;
+            while (parent && !parent.classList.contains("file-explorer")) {
+              if (parent.classList.contains("folder")) {
+                parent.style.display = "block";
+              }
+              parent = parent.parentElement;
+            }
+          }
+        });
+      }
+
+      // 初始化
+      document.addEventListener("DOMContentLoaded", async () => {
+        await loadFileStructure();
+        renderFileTree();
+
+        // 添加搜索功能
+        document
+          .getElementById("searchBox")
+          .addEventListener("input", searchFiles);
+      });
+    </script>
+  </body>
+</html>

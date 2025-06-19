@@ -1,0 +1,27 @@
+{
+  "name": "nkuse-exam-archive",
+  "version": "1.0.0",
+  "description": "南开大学软件学院考试资料库网站",
+  "main": "generate-structure.js",
+  "scripts": {
+    "generate": "node generate-structure.js",
+    "serve": "npx http-server -p 8000 -o",
+    "build": "node generate-structure.js",
+    "dev": "npm run generate && npm run serve"
+  },
+  "keywords": [
+    "exam",
+    "archive",
+    "nankai",
+    "university",
+    "github-pages"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
