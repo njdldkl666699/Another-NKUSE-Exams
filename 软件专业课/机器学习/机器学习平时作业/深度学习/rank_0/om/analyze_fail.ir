@@ -1,0 +1,1525 @@
+# ===============================================================================================
+# The following shows the last analyze fail log message.
+# ===============================================================================================
+
+----------------------------------------------------
+- Caught exception:
+----------------------------------------------------
+The pointer[value] is null.
+
+----------------------------------------------------
+- Framework Unexpected Exception Raised:
+----------------------------------------------------
+This exception is caused by framework's unexpected error. Please create an issue at https://gitee.com/mindspore/mindspore/issues to get help.
+
+----------------------------------------------------
+- C++ Call Stack: (For framework developers)
+----------------------------------------------------
+mindspore\core\include\ir/anf.h:968 mindspore::GetValue
+
+----------------------------------------------------
+- The Traceback of Net Construct Code:
+----------------------------------------------------
+
+Bprop "GatherDGradV2" encounter a problem: [The pointer[value] is null.
+
+----------------------------------------------------
+- Framework Unexpected Exception Raised:
+----------------------------------------------------
+This exception is caused by framework's unexpected error. Please create an issue at https://gitee.com/mindspore/mindspore/issues to get help.
+
+----------------------------------------------------
+- C++ Call Stack: (For framework developers)
+----------------------------------------------------
+mindspore\ccsrc\frontend\expander\bprop\bprop_meta_func_graph.cc:47 mindspore::expander::bprop::BpropMetaFuncGraph::GenerateFuncGraph
+mindspore\core\include\ir/anf.h:968 mindspore::GetValue
+]
+----------------------------------------------------
+- The Traceback of Net Construct Code:
+----------------------------------------------------
+
+# ===============================================================================================
+# The following shows the IR when the function graphs evaluation fails to help locate the problem.
+# You can search the last ------------------------> to the node which is evaluated failure.
+# Refer to https://www.mindspore.cn/search?inputValue=analyze_fail.ir to get more instructions.
+# ===============================================================================================
+
+# IR entry: @bprop_builder_1048
+# Total subgraphs: 0
+
+# Total params: 14
+# Params:
+%para1_: <null>
+%para2_: <null>
+%para3_: <null>
+%para4_: <null>
+%para5_: <null>
+%para6_: <null>
+%para7_: <null>
+%para8_: <null>
+%para9_: <null>
+%para10_: <null>
+%para11_: <null>
+%para12_: <null>
+%para13_: <null>
+%para14_: <null>
+
+subgraph attr:
+subgraph instance: bprop_builder_1048 : 00000187755EDE60
+
+subgraph @bprop_builder_1048() {
+  %0(CNode_1063) = EnvironCreate()
+      #scope: (Default)
+  %1(CNode_1064) = MakeTuple(%0)
+      : (<Object:EnvType, NoShape>) -> (<Tuple[Object:EnvType], TupleShape(NoShape)>)
+      #scope: (Default)
+  %2(equiv_217_CNode_1065) = PrimFunc_Flatten(%para1_Parameter_1049) primitive_attrs: {IsFeatureMapOutput: Bool(0), IsFeatureMapInputList: ()} cnode_primal_attrs: {unique_id: "42791"}
+      : (<Tensor[Float32], (64, 1, 28, 28)>) -> (<Tensor[Float32], (64, 784)>)
+      #scope: (Default)
+  %3(CNode_1066) = EnvironCreate()
+      #scope: (Default)
+  %4(CNode_1067) = MakeTuple(%3)
+      : (<Object:EnvType, NoShape>) -> (<Tuple[Object:EnvType], TupleShape(NoShape)>)
+      #scope: (Default)
+  %5(equiv_158_CNode_1068) = PrimFunc_MatMul(%2, %para3_Parameter_1051, Bool(0), Bool(1)) cnode_attrs: {is_knode: Bool(1)} cnode_primal_attrs: {unique_id: "41720"}
+      : (<Tensor[Float32], (64, 784)>, <Ref[Tensor[Float32]], (512, 784)>, <Bool, NoShape>, <Bool, NoShape>) -> (<Tensor[Float32], (64, 512)>)
+      #scope: (Default)
+  %6(CNode_1069) = EnvironCreate()
+      #scope: (Default)
+  %7(CNode_1070) = MakeTuple(%6)
+      : (<Object:EnvType, NoShape>) -> (<Tuple[Object:EnvType], TupleShape(NoShape)>)
+      #scope: (Default)
+  %8(equiv_218_CNode_1071) = PrimFunc_BiasAdd(%5, %para4_Parameter_1052, I64(0)) {instance name: bias_add} primitive_attrs: {IsFeatureMapOutput: Bool(0), IsFeatureMapInputList: ()} cnode_primal_attrs: {unique_id: "42793"}
+      : (<Tensor[Float32], (64, 512)>, <Ref[Tensor[Float32]], (512)>, <Int64, NoShape>) -> (<Tensor[Float32], (64, 512)>)
+      #scope: (Default)
+  %9(CNode_1072) = EnvironCreate()
+      #scope: (Default)
+  %10(CNode_1073) = MakeTuple(%9)
+      : (<Object:EnvType, NoShape>) -> (<Tuple[Object:EnvType], TupleShape(NoShape)>)
+      #scope: (Default)
+  %11(equiv_157_CNode_1074) = PrimFunc_ReLU(%8) cnode_attrs: {is_knode: Bool(1)} cnode_primal_attrs: {unique_id: "41760"}
+      : (<Tensor[Float32], (64, 512)>) -> (<Tensor[Float32], (64, 512)>)
+      #scope: (Default)
+  %12(CNode_1075) = EnvironCreate()
+      #scope: (Default)
+  %13(CNode_1076) = MakeTuple(%12)
+      : (<Object:EnvType, NoShape>) -> (<Tuple[Object:EnvType], TupleShape(NoShape)>)
+      #scope: (Default)
+  %14(equiv_156_CNode_1077) = PrimFunc_MatMul(%11, %para5_Parameter_1053, Bool(0), Bool(1)) cnode_attrs: {is_knode: Bool(1)} cnode_primal_attrs: {unique_id: "41776"}
+      : (<Tensor[Float32], (64, 512)>, <Ref[Tensor[Float32]], (512, 512)>, <Bool, NoShape>, <Bool, NoShape>) -> (<Tensor[Float32], (64, 512)>)
+      #scope: (Default)
+  %15(CNode_1078) = EnvironCreate()
+      #scope: (Default)
+  %16(CNode_1079) = MakeTuple(%15)
+      : (<Object:EnvType, NoShape>) -> (<Tuple[Object:EnvType], TupleShape(NoShape)>)
+      #scope: (Default)
+  %17(equiv_219_CNode_1080) = PrimFunc_BiasAdd(%14, %para6_Parameter_1054, I64(0)) {instance name: bias_add} primitive_attrs: {IsFeatureMapOutput: Bool(0), IsFeatureMapInputList: ()} cnode_primal_attrs: {unique_id: "42795"}
+      : (<Tensor[Float32], (64, 512)>, <Ref[Tensor[Float32]], (512)>, <Int64, NoShape>) -> (<Tensor[Float32], (64, 512)>)
+      #scope: (Default)
+  %18(CNode_1081) = EnvironCreate()
+      #scope: (Default)
+  %19(CNode_1082) = MakeTuple(%18)
+      : (<Object:EnvType, NoShape>) -> (<Tuple[Object:EnvType], TupleShape(NoShape)>)
+      #scope: (Default)
+  %20(equiv_155_CNode_1083) = PrimFunc_ReLU(%17) cnode_attrs: {is_knode: Bool(1)} cnode_primal_attrs: {unique_id: "41816"}
+      : (<Tensor[Float32], (64, 512)>) -> (<Tensor[Float32], (64, 512)>)
+      #scope: (Default)
+  %21(CNode_1084) = EnvironCreate()
+      #scope: (Default)
+  %22(CNode_1085) = MakeTuple(%21)
+      : (<Object:EnvType, NoShape>) -> (<Tuple[Object:EnvType], TupleShape(NoShape)>)
+      #scope: (Default)
+  %23(equiv_154_CNode_1086) = PrimFunc_MatMul(%20, %para7_Parameter_1055, Bool(0), Bool(1)) cnode_attrs: {is_knode: Bool(1)} cnode_primal_attrs: {unique_id: "41832"}
+      : (<Tensor[Float32], (64, 512)>, <Ref[Tensor[Float32]], (10, 512)>, <Bool, NoShape>, <Bool, NoShape>) -> (<Tensor[Float32], (64, 10)>)
+      #scope: (Default)
+  %24(CNode_1087) = EnvironCreate()
+      #scope: (Default)
+  %25(CNode_1088) = MakeTuple(%24)
+      : (<Object:EnvType, NoShape>) -> (<Tuple[Object:EnvType], TupleShape(NoShape)>)
+      #scope: (Default)
+  %26(equiv_220_CNode_1089) = PrimFunc_BiasAdd(%23, %para8_Parameter_1056, I64(0)) {instance name: bias_add} primitive_attrs: {IsFeatureMapOutput: Bool(0), IsFeatureMapInputList: ()} cnode_primal_attrs: {unique_id: "42797"}
+      : (<Tensor[Float32], (64, 10)>, <Ref[Tensor[Float32]], (10)>, <Int64, NoShape>) -> (<Tensor[Float32], (64, 10)>)
+      #scope: (Default)
+  %27(CNode_1090) = EnvironCreate()
+      #scope: (Default)
+  %28(CNode_1091) = MakeTuple(%27)
+      : (<Object:EnvType, NoShape>) -> (<Tuple[Object:EnvType], TupleShape(NoShape)>)
+      #scope: (Default)
+  %29(equiv_159_CNode_1092) = PrimFunc_ReduceMax(%26, (I64(1)), Bool(1)) cnode_attrs: {is_knode: Bool(1)} cnode_primal_attrs: {unique_id: "41874"}
+      : (<Tensor[Float32], (64, 10)>, <Tuple[Int64], TupleShape(NoShape)>, <Bool, NoShape>) -> (<Tensor[Float32], (64, 1)>)
+      #scope: (Default)
+  %30(CNode_1093) = EnvironCreate()
+      #scope: (Default)
+  %31(CNode_1094) = MakeTuple(%30)
+      : (<Object:EnvType, NoShape>) -> (<Tuple[Object:EnvType], TupleShape(NoShape)>)
+      #scope: (Default)
+  %32(equiv_167_CNode_1095) = PrimFunc_Sub(%26, %29) cnode_attrs: {is_knode: Bool(1)} cnode_primal_attrs: {unique_id: "41904"}
+      : (<Tensor[Float32], (64, 10)>, <Tensor[Float32], (64, 1)>) -> (<Tensor[Float32], (64, 10)>)
+      #scope: (Default)
+  %33(CNode_1096) = EnvironCreate()
+      #scope: (Default)
+  %34(CNode_1097) = MakeTuple(%33)
+      : (<Object:EnvType, NoShape>) -> (<Tuple[Object:EnvType], TupleShape(NoShape)>)
+      #scope: (Default)
+  %35(equiv_166_CNode_1098) = PrimFunc_Exp(%32) cnode_attrs: {is_knode: Bool(1)} cnode_primal_attrs: {unique_id: "41919"}
+      : (<Tensor[Float32], (64, 10)>) -> (<Tensor[Float32], (64, 10)>)
+      #scope: (Default)
+  %36(CNode_1099) = EnvironCreate()
+      #scope: (Default)
+  %37(CNode_1100) = MakeTuple(%36)
+      : (<Object:EnvType, NoShape>) -> (<Tuple[Object:EnvType], TupleShape(NoShape)>)
+      #scope: (Default)
+  %38(equiv_221_CNode_1101) = PrimFunc_ReduceSum(%35, (I64(1)), Bool(1), Bool(0)) primitive_attrs: {IsFeatureMapOutput: Bool(0), IsFeatureMapInputList: ()} cnode_primal_attrs: {unique_id: "42799"}
+      : (<Tensor[Float32], (64, 10)>, <Tuple[Int64], TupleShape(NoShape)>, <Bool, NoShape>, <Bool, NoShape>) -> (<Tensor[Float32], (64, 1)>)
+      #scope: (Default)
+  %39(CNode_1102) = EnvironCreate()
+      #scope: (Default)
+  %40(CNode_1103) = MakeTuple(%39)
+      : (<Object:EnvType, NoShape>) -> (<Tuple[Object:EnvType], TupleShape(NoShape)>)
+      #scope: (Default)
+  %41(equiv_193_CNode_1104) = PrimFunc_Log(%38) cnode_attrs: {is_knode: Bool(1)} cnode_primal_attrs: {unique_id: "41955"}
+      : (<Tensor[Float32], (64, 1)>) -> (<Tensor[Float32], (64, 1)>)
+      #scope: (Default)
+  %42(CNode_1105) = EnvironCreate()
+      #scope: (Default)
+  %43(CNode_1106) = MakeTuple(%42)
+      : (<Object:EnvType, NoShape>) -> (<Tuple[Object:EnvType], TupleShape(NoShape)>)
+      #scope: (Default)
+  %44(equiv_192_CNode_1107) = PrimFunc_Add(%41, %29) cnode_attrs: {is_knode: Bool(1)} cnode_primal_attrs: {unique_id: "41965"}
+      : (<Tensor[Float32], (64, 1)>, <Tensor[Float32], (64, 1)>) -> (<Tensor[Float32], (64, 1)>)
+      #scope: (Default)
+  %45(CNode_1108) = EnvironCreate()
+      #scope: (Default)
+  %46(CNode_1109) = MakeTuple(%45)
+      : (<Object:EnvType, NoShape>) -> (<Tuple[Object:EnvType], TupleShape(NoShape)>)
+      #scope: (Default)
+  %47(equiv_191_CNode_1110) = PrimFunc_Sub(%26, %44) cnode_attrs: {is_knode: Bool(1)} cnode_primal_attrs: {unique_id: "41973"}
+      : (<Tensor[Float32], (64, 10)>, <Tensor[Float32], (64, 1)>) -> (<Tensor[Float32], (64, 10)>)
+      #scope: (Default)
+  %48(CNode_1111) = EnvironCreate()
+      #scope: (Default)
+  %49(CNode_1112) = MakeTuple(%48)
+      : (<Object:EnvType, NoShape>) -> (<Tuple[Object:EnvType], TupleShape(NoShape)>)
+      #scope: (Default)
+  %50(equiv_180_CNode_1113) = PrimFunc_ExpandDims(%para2_Parameter_1050, I64(-1)) cnode_attrs: {is_knode: Bool(1)} cnode_primal_attrs: {unique_id: "41989"}
+      : (<Tensor[Int32], (64)>, <Int64, NoShape>) -> (<Tensor[Int32], (64, 1)>)
+      #scope: (Default)
+  %51(equiv_190_CNode_1114) = PrimFunc_Contiguous(%50) cnode_attrs: {is_knode: Bool(1)} cnode_primal_attrs: {unique_id: "42025"}
+      : (<Tensor[Int32], (64, 1)>) -> (<Tensor[Int32], (64, 1)>)
+      #scope: (Default)
+  %52(equiv_179_CNode_1115) = PrimFunc_Contiguous(%50) cnode_attrs: {convert_attr_node: Bool(1), is_knode: Bool(1)} cnode_primal_attrs: {unique_id: "42003"}
+      : (<Tensor[Int32], (64, 1)>) -> (<Tensor[Int32], (64, 1)>)
+      #scope: (Default)
+  %53(equiv_178_CNode_1116) = PrimFunc_Equal(%52, Tensor(shape=[], dtype=Int32, value=-100)) cnode_attrs: {convert_attr_node: Bool(1), is_knode: Bool(1)} cnode_primal_attrs: {unique_id: "42012"}
+      : (<Tensor[Int32], (64, 1)>, <Tensor[Int32], ()>) -> (<Tensor[Bool], (64, 1)>)
+      #scope: (Default)
+  %54(equiv_189_CNode_1117) = PrimFunc_MaskedFill(%51, %53, Tensor(shape=[], dtype=Int32, value=0)) cnode_attrs: {convert_attr_node: Bool(1), is_knode: Bool(1)} cnode_primal_attrs: {unique_id: "42034"}
+      : (<Tensor[Int32], (64, 1)>, <Tensor[Bool], (64, 1)>, <Tensor[Int32], ()>) -> (<Tensor[Int32], (64, 1)>)
+      #scope: (Default)
+  %55(equiv_188_CNode_1118) = PrimFunc_GatherD(%47, I64(-1), %54) cnode_attrs: {is_knode: Bool(1)} cnode_primal_attrs: {unique_id: "42070"}
+      : (<Tensor[Float32], (64, 10)>, <Int64, NoShape>, <Tensor[Int32], (64, 1)>) -> (<Tensor[Float32], (64, 1)>)
+      #scope: (Default)
+  %56(CNode_1119) = EnvironCreate()
+      #scope: (Default)
+  %57(CNode_1120) = MakeTuple(%56)
+      : (<Object:EnvType, NoShape>) -> (<Tuple[Object:EnvType], TupleShape(NoShape)>)
+      #scope: (Default)
+  %58(equiv_187_CNode_1121) = PrimFunc_Neg(%55) cnode_attrs: {convert_attr_node: Bool(1), is_knode: Bool(1)} cnode_primal_attrs: {unique_id: "42085"}
+      : (<Tensor[Float32], (64, 1)>) -> (<Tensor[Float32], (64, 1)>)
+      #scope: (Default)
+  %59(CNode_1122) = EnvironCreate()
+      #scope: (Default)
+  %60(CNode_1123) = MakeTuple(%59)
+      : (<Object:EnvType, NoShape>) -> (<Tuple[Object:EnvType], TupleShape(NoShape)>)
+      #scope: (Default)
+  %61(equiv_222_CNode_1124) = PrimFunc_OnesLike(%58) primitive_attrs: {IsFeatureMapOutput: Bool(0), IsFeatureMapInputList: ()} cnode_primal_attrs: {unique_id: "42801"}
+      : (<Tensor[Float32], (64, 1)>) -> (<Tensor[Float32], (64, 1)>)
+      #scope: (Default)
+  %62(CNode_1125) = EnvironCreate()
+      #scope: (Default)
+  %63(CNode_1126) = MakeTuple(%62)
+      : (<Object:EnvType, NoShape>) -> (<Tuple[Object:EnvType], TupleShape(NoShape)>)
+      #scope: (Default)
+  %64(equiv_186_CNode_1127) = PrimFunc_MaskedFill(%61, %53, Tensor(shape=[], dtype=Float32, value=0)) cnode_attrs: {is_knode: Bool(1)} cnode_primal_attrs: {unique_id: "42169"}
+      : (<Tensor[Float32], (64, 1)>, <Tensor[Bool], (64, 1)>, <Tensor[Float32], ()>) -> (<Tensor[Float32], (64, 1)>)
+      #scope: (Default)
+  %65(CNode_1128) = EnvironCreate()
+      #scope: (Default)
+  %66(CNode_1129) = MakeTuple(%65)
+      : (<Object:EnvType, NoShape>) -> (<Tuple[Object:EnvType], TupleShape(NoShape)>)
+      #scope: (Default)
+  %67(equiv_205_CNode_1130) = PrimFunc_SumExt(%64, None, Bool(0), None) cnode_attrs: {is_knode: Bool(1)} cnode_primal_attrs: {unique_id: "42374"}
+      : (<Tensor[Float32], (64, 1)>, <None, NoShape>, <Bool, NoShape>, <None, NoShape>) -> (<Tensor[Float32], ()>)
+      #scope: (Default)
+  %68(CNode_1131) = EnvironCreate()
+      #scope: (Default)
+  %69(CNode_1132) = MakeTuple(%68)
+      : (<Object:EnvType, NoShape>) -> (<Tuple[Object:EnvType], TupleShape(NoShape)>)
+      #scope: (Default)
+  %70(equiv_195_CNode_1133) = PrimFunc_OnesLike(Tensor(shape=[], dtype=Float32, value=<uninitialized>)) cnode_primal_attrs: {unique_id: "42451"}
+      : (<Tensor[Float32], ()>) -> (<Tensor[Float32], ()>)
+      #scope: (Default)
+  %71(equiv_206_CNode_1134) = PrimFunc_Mul(Tensor(shape=[], dtype=Float32, value=0), %70) cnode_attrs: {convert_attr_node: Bool(1)} cnode_primal_attrs: {unique_id: "42435"}
+      : (<Tensor[Float32], ()>, <Tensor[Float32], ()>) -> (<Tensor[Float32], ()>)
+      #scope: (Default)
+  %72(equiv_204_CNode_1135) = PrimFunc_Div(%71, %67) cnode_attrs: {convert_attr_node: Bool(1)} cnode_primal_attrs: {unique_id: "42403"}
+      : (<Tensor[Float32], ()>, <Tensor[Float32], ()>) -> (<Tensor[Float32], ()>)
+      #scope: (Default)
+  %73(CNode_1136) = EnvironCreate()
+      #scope: (Default)
+  %74(CNode_1137) = MakeTuple(%73)
+      : (<Object:EnvType, NoShape>) -> (<Tuple[Object:EnvType], TupleShape(NoShape)>)
+      #scope: (Default)
+  %75(equiv_203_CNode_1138) = PrimFunc_Reshape(%72, (I64(1))) cnode_primal_attrs: {unique_id: "42356"}
+      : (<Tensor[Float32], ()>, <Tuple[Int64], TupleShape(NoShape)>) -> (<Tensor[Float32], (1)>)
+      #scope: (Default)
+  %76(CNode_1139) = EnvironCreate()
+      #scope: (Default)
+  %77(CNode_1140) = MakeTuple(%76)
+      : (<Object:EnvType, NoShape>) -> (<Tuple[Object:EnvType], TupleShape(NoShape)>)
+      #scope: (Default)
+  %78(equiv_202_CNode_1141) = PrimFunc_Tile(%75, (I64(64))) cnode_attrs: {convert_attr_node: Bool(1)} cnode_primal_attrs: {unique_id: "42359"}
+      : (<Tensor[Float32], (1)>, <Tuple[Int64], TupleShape(NoShape)>) -> (<Tensor[Float32], (64)>)
+      #scope: (Default)
+  %79(CNode_1142) = EnvironCreate()
+      #scope: (Default)
+  %80(CNode_1143) = MakeTuple(%79)
+      : (<Object:EnvType, NoShape>) -> (<Tuple[Object:EnvType], TupleShape(NoShape)>)
+      #scope: (Default)
+  %81(equiv_201_CNode_1144) = PrimFunc_Reshape(%78, (I64(64), I64(1))) cnode_attrs: {convert_attr_node: Bool(1)} cnode_primal_attrs: {unique_id: "42248"}
+      : (<Tensor[Float32], (64)>, <Tuple[Int64*2], TupleShape(NoShape, NoShape)>) -> (<Tensor[Float32], (64, 1)>)
+      #scope: (Default)
+  %82(CNode_1145) = EnvironCreate()
+      #scope: (Default)
+  %83(CNode_1146) = MakeTuple(%82)
+      : (<Object:EnvType, NoShape>) -> (<Tuple[Object:EnvType], TupleShape(NoShape)>)
+      #scope: (Default)
+  %84(equiv_200_CNode_1147) = PrimFunc_Cast(%53, I64(43)) cnode_primal_attrs: {unique_id: "42205"}
+      : (<Tensor[Bool], (64, 1)>, <Int64, NoShape>) -> (<Tensor[Float32], (64, 1)>)
+      #scope: (Default)
+  %85(equiv_199_CNode_1148) = PrimFunc_Sub(Tensor(shape=[], dtype=Float32, value=1), %84) cnode_primal_attrs: {unique_id: "42208"}
+      : (<Tensor[Float32], ()>, <Tensor[Float32], (64, 1)>) -> (<Tensor[Float32], (64, 1)>)
+      #scope: (Default)
+  %86(equiv_198_CNode_1149) = PrimFunc_Mul(%81, %85) cnode_attrs: {convert_attr_node: Bool(1)} cnode_primal_attrs: {unique_id: "42210"}
+      : (<Tensor[Float32], (64, 1)>, <Tensor[Float32], (64, 1)>) -> (<Tensor[Float32], (64, 1)>)
+      #scope: (Default)
+  %87(CNode_1150) = EnvironCreate()
+      #scope: (Default)
+  %88(CNode_1151) = MakeTuple(%87)
+      : (<Object:EnvType, NoShape>) -> (<Tuple[Object:EnvType], TupleShape(NoShape)>)
+      #scope: (Default)
+  %89(equiv_197_CNode_1152) = PrimFunc_Neg(%86) cnode_attrs: {convert_attr_node: Bool(1)} cnode_primal_attrs: {unique_id: "42126"}
+      : (<Tensor[Float32], (64, 1)>) -> (<Tensor[Float32], (64, 1)>)
+      #scope: (Default)
+  %90(CNode_1153) = EnvironCreate()
+      #scope: (Default)
+  %91(CNode_1154) = MakeTuple(%90)
+      : (<Object:EnvType, NoShape>) -> (<Tuple[Object:EnvType], TupleShape(NoShape)>)
+      #scope: (Default)
+  %92(equiv_196_CNode_1155) = PrimFunc_Tile(%89, (I64(1), I64(10))) cnode_attrs: {convert_attr_node: Bool(1)} cnode_primal_attrs: {unique_id: "42107"}
+      : (<Tensor[Float32], (64, 1)>, <Tuple[Int64*2], TupleShape(NoShape, NoShape)>) -> (<Tensor[Float32], (64, 10)>)
+      #scope: (Default)
+  %93(CNode_1156) = EnvironCreate()
+      #scope: (Default)
+  %94(CNode_1157) = MakeTuple(%93)
+      : (<Object:EnvType, NoShape>) -> (<Tuple[Object:EnvType], TupleShape(NoShape)>)
+      #scope: (Default)
+  %95(equiv_194_CNode_1158) = PrimFunc_Mul(Tensor(shape=[], dtype=Float32, value=1), %70) cnode_attrs: {convert_attr_node: Bool(1)} cnode_primal_attrs: {unique_id: "42421"}
+      : (<Tensor[Float32], ()>, <Tensor[Float32], ()>) -> (<Tensor[Float32], ()>)
+      #scope: (Default)
+  %96(equiv_185_CNode_1159) = PrimFunc_SumExt(%64, None, Bool(0), None) cnode_attrs: {is_knode: Bool(1)} cnode_primal_attrs: {unique_id: "42296"}
+      : (<Tensor[Float32], (64, 1)>, <None, NoShape>, <Bool, NoShape>, <None, NoShape>) -> (<Tensor[Float32], ()>)
+      #scope: (Default)
+  %97(equiv_184_CNode_1160) = PrimFunc_Div(%95, %96) cnode_attrs: {convert_attr_node: Bool(1)} cnode_primal_attrs: {unique_id: "42325"}
+      : (<Tensor[Float32], ()>, <Tensor[Float32], ()>) -> (<Tensor[Float32], ()>)
+      #scope: (Default)
+  %98(equiv_183_CNode_1161) = PrimFunc_Reshape(%97, (I64(1))) cnode_primal_attrs: {unique_id: "42278"}
+      : (<Tensor[Float32], ()>, <Tuple[Int64], TupleShape(NoShape)>) -> (<Tensor[Float32], (1)>)
+      #scope: (Default)
+  %99(equiv_182_CNode_1162) = PrimFunc_Tile(%98, (I64(64))) cnode_attrs: {convert_attr_node: Bool(1)} cnode_primal_attrs: {unique_id: "42281"}
+      : (<Tensor[Float32], (1)>, <Tuple[Int64], TupleShape(NoShape)>) -> (<Tensor[Float32], (64)>)
+      #scope: (Default)
+  %100(equiv_181_CNode_1163) = PrimFunc_Reshape(%99, (I64(64), I64(1))) cnode_attrs: {convert_attr_node: Bool(1)} cnode_primal_attrs: {unique_id: "42230"}
+      : (<Tensor[Float32], (64)>, <Tuple[Int64*2], TupleShape(NoShape, NoShape)>) -> (<Tensor[Float32], (64, 1)>)
+      #scope: (Default)
+  %101(equiv_177_CNode_1164) = PrimFunc_Cast(%53, I64(43)) cnode_primal_attrs: {unique_id: "42151"}
+      : (<Tensor[Bool], (64, 1)>, <Int64, NoShape>) -> (<Tensor[Float32], (64, 1)>)
+      #scope: (Default)
+  %102(equiv_176_CNode_1165) = PrimFunc_Sub(Tensor(shape=[], dtype=Float32, value=1), %101) cnode_primal_attrs: {unique_id: "42154"}
+      : (<Tensor[Float32], ()>, <Tensor[Float32], (64, 1)>) -> (<Tensor[Float32], (64, 1)>)
+      #scope: (Default)
+  %103(equiv_175_CNode_1166) = PrimFunc_Mul(%100, %102) cnode_attrs: {convert_attr_node: Bool(1)} cnode_primal_attrs: {unique_id: "42156"}
+      : (<Tensor[Float32], (64, 1)>, <Tensor[Float32], (64, 1)>) -> (<Tensor[Float32], (64, 1)>)
+      #scope: (Default)
+  %104(equiv_174_CNode_1167) = PrimFunc_Neg(%103) cnode_attrs: {convert_attr_node: Bool(1)} cnode_primal_attrs: {unique_id: "42090"}
+      : (<Tensor[Float32], (64, 1)>) -> (<Tensor[Float32], (64, 1)>)
+      #scope: (Default)
+  %105(equiv_173_CNode_1168) = PrimFunc_GatherDGradV2(%47, I64(-1), %54, %104) cnode_attrs: {convert_attr_node: Bool(1)} cnode_primal_attrs: {unique_id: "42076"}
+      : (<Tensor[Float32], (64, 10)>, <Int64, NoShape>, <Tensor[Int32], (64, 1)>, <Tensor[Float32], (64, 1)>) -> (<Tensor[Float32], (64, 10)>)
+      #scope: (Default)
+  %106(equiv_172_CNode_1169) = PrimFunc_Add(%92, %105) cnode_primal_attrs: {unique_id: "42461"}
+      : (<Tensor[Float32], (64, 10)>, <Tensor[Float32], (64, 10)>) -> (<Tensor[Float32], (64, 10)>)
+      #scope: (Default)
+  %107(CNode_1170) = EnvironCreate()
+      #scope: (Default)
+  %108(CNode_1171) = MakeTuple(%107)
+      : (<Object:EnvType, NoShape>) -> (<Tuple[Object:EnvType], TupleShape(NoShape)>)
+      #scope: (Default)
+  %109(equiv_171_CNode_1172) = PrimFunc_Neg(%106) cnode_primal_attrs: {unique_id: "41978"}
+      : (<Tensor[Float32], (64, 10)>) -> (<Tensor[Float32], (64, 10)>)
+      #scope: (Default)
+  %110(CNode_1173) = EnvironCreate()
+      #scope: (Default)
+  %111(CNode_1174) = MakeTuple(%110)
+      : (<Object:EnvType, NoShape>) -> (<Tuple[Object:EnvType], TupleShape(NoShape)>)
+      #scope: (Default)
+  %112(equiv_170_CNode_1175) = PrimFunc_SumExt(%109, (I64(1)), Bool(1), I64(43)) cnode_attrs: {convert_attr_node: Bool(1)} cnode_primal_attrs: {unique_id: "41983"}
+      : (<Tensor[Float32], (64, 10)>, <Tuple[Int64], TupleShape(NoShape)>, <Bool, NoShape>, <Int64, NoShape>) -> (<Tensor[Float32], (64, 1)>)
+      #scope: (Default)
+  %113(CNode_1176) = EnvironCreate()
+      #scope: (Default)
+  %114(CNode_1177) = MakeTuple(%113)
+      : (<Object:EnvType, NoShape>) -> (<Tuple[Object:EnvType], TupleShape(NoShape)>)
+      #scope: (Default)
+  %115(equiv_169_CNode_1178) = PrimFunc_Div(%112, %38) cnode_attrs: {convert_attr_node: Bool(1)} cnode_primal_attrs: {unique_id: "41960"}
+      : (<Tensor[Float32], (64, 1)>, <Tensor[Float32], (64, 1)>) -> (<Tensor[Float32], (64, 1)>)
+      #scope: (Default)
+  %116(CNode_1179) = EnvironCreate()
+      #scope: (Default)
+  %117(CNode_1180) = MakeTuple(%116)
+      : (<Object:EnvType, NoShape>) -> (<Tuple[Object:EnvType], TupleShape(NoShape)>)
+      #scope: (Default)
+  %118(equiv_168_CNode_1181) = PrimFunc_Tile(%115, (I64(1), I64(10))) cnode_attrs: {convert_attr_node: Bool(1)} cnode_primal_attrs: {unique_id: "41941"}
+      : (<Tensor[Float32], (64, 1)>, <Tuple[Int64*2], TupleShape(NoShape, NoShape)>) -> (<Tensor[Float32], (64, 10)>)
+      #scope: (Default)
+  %119(CNode_1182) = EnvironCreate()
+      #scope: (Default)
+  %120(CNode_1183) = MakeTuple(%119)
+      : (<Object:EnvType, NoShape>) -> (<Tuple[Object:EnvType], TupleShape(NoShape)>)
+      #scope: (Default)
+  %121(equiv_165_CNode_1184) = PrimFunc_Mul(%118, %35) cnode_attrs: {convert_attr_node: Bool(1)} cnode_primal_attrs: {unique_id: "41924"}
+      : (<Tensor[Float32], (64, 10)>, <Tensor[Float32], (64, 10)>) -> (<Tensor[Float32], (64, 10)>)
+      #scope: (Default)
+  %122(CNode_1185) = EnvironCreate()
+      #scope: (Default)
+  %123(CNode_1186) = MakeTuple(%122)
+      : (<Object:EnvType, NoShape>) -> (<Tuple[Object:EnvType], TupleShape(NoShape)>)
+      #scope: (Default)
+  %124(equiv_207_CNode_1187) = PrimFunc_Add(%106, %121) cnode_primal_attrs: {unique_id: "42463"}
+      : (<Tensor[Float32], (64, 10)>, <Tensor[Float32], (64, 10)>) -> (<Tensor[Float32], (64, 10)>)
+      #scope: (Default)
+  %125(CNode_1188) = EnvironCreate()
+      #scope: (Default)
+  %126(CNode_1189) = MakeTuple(%125)
+      : (<Object:EnvType, NoShape>) -> (<Tuple[Object:EnvType], TupleShape(NoShape)>)
+      #scope: (Default)
+  %127(equiv_164_CNode_1190) = PrimFunc_Neg(%121) cnode_primal_attrs: {unique_id: "41909"}
+      : (<Tensor[Float32], (64, 10)>) -> (<Tensor[Float32], (64, 10)>)
+      #scope: (Default)
+  %128(equiv_163_CNode_1191) = PrimFunc_SumExt(%127, (I64(1)), Bool(1), I64(43)) cnode_attrs: {convert_attr_node: Bool(1)} cnode_primal_attrs: {unique_id: "41914"}
+      : (<Tensor[Float32], (64, 10)>, <Tuple[Int64], TupleShape(NoShape)>, <Bool, NoShape>, <Int64, NoShape>) -> (<Tensor[Float32], (64, 1)>)
+      #scope: (Default)
+  %129(equiv_162_CNode_1192) = PrimFunc_Add(%112, %128) cnode_primal_attrs: {unique_id: "42465"}
+      : (<Tensor[Float32], (64, 1)>, <Tensor[Float32], (64, 1)>) -> (<Tensor[Float32], (64, 1)>)
+      #scope: (Default)
+  %130(equiv_153_CNode_1193) = PrimFunc_Equal(%29, %26) cnode_primal_attrs: {unique_id: "41881"}
+      : (<Tensor[Float32], (64, 1)>, <Tensor[Float32], (64, 10)>) -> (<Tensor[Bool], (64, 10)>)
+      #scope: (Default)
+  %131(equiv_152_CNode_1194) = PrimFunc_Cast(%130, I64(43)) cnode_primal_attrs: {unique_id: "41884"}
+      : (<Tensor[Bool], (64, 10)>, <Int64, NoShape>) -> (<Tensor[Float32], (64, 10)>)
+      #scope: (Default)
+  %132(equiv_161_CNode_1195) = PrimFunc_SumExt(%131, (I64(1)), Bool(1), I64(43)) cnode_primal_attrs: {unique_id: "41888"}
+      : (<Tensor[Float32], (64, 10)>, <Tuple[Int64], TupleShape(NoShape)>, <Bool, NoShape>, <Int64, NoShape>) -> (<Tensor[Float32], (64, 1)>)
+      #scope: (Default)
+  %133(equiv_160_CNode_1196) = PrimFunc_Div(%129, %132) cnode_primal_attrs: {unique_id: "41890"}
+      : (<Tensor[Float32], (64, 1)>, <Tensor[Float32], (64, 1)>) -> (<Tensor[Float32], (64, 1)>)
+      #scope: (Default)
+  %134(equiv_151_CNode_1197) = PrimFunc_Mul(%133, %131) cnode_attrs: {convert_attr_node: Bool(1)} cnode_primal_attrs: {unique_id: "41892"}
+      : (<Tensor[Float32], (64, 1)>, <Tensor[Float32], (64, 10)>) -> (<Tensor[Float32], (64, 10)>)
+      #scope: (Default)
+  %135(equiv_150_CNode_1198) = PrimFunc_Add(%124, %134) cnode_primal_attrs: {unique_id: "42467"}
+      : (<Tensor[Float32], (64, 10)>, <Tensor[Float32], (64, 10)>) -> (<Tensor[Float32], (64, 10)>)
+      #scope: (Default)
+  %136(CNode_1199) = EnvironCreate()
+      #scope: (Default)
+  %137(CNode_1200) = MakeTuple(%136)
+      : (<Object:EnvType, NoShape>) -> (<Tuple[Object:EnvType], TupleShape(NoShape)>)
+      #scope: (Default)
+  %138(equiv_211_CNode_1201) = PrimFunc_MatMul(%135, %para7_Parameter_1055, Bool(0), Bool(0)) cnode_attrs: {convert_attr_node: Bool(1)} cnode_primal_attrs: {unique_id: "41841"}
+      : (<Tensor[Float32], (64, 10)>, <Ref[Tensor[Float32]], (10, 512)>, <Bool, NoShape>, <Bool, NoShape>) -> (<Tensor[Float32], (64, 512)>)
+      #scope: (Default)
+  %139(CNode_1202) = EnvironCreate()
+      #scope: (Default)
+  %140(CNode_1203) = MakeTuple(%139)
+      : (<Object:EnvType, NoShape>) -> (<Tuple[Object:EnvType], TupleShape(NoShape)>)
+      #scope: (Default)
+  %141(equiv_210_CNode_1204) = PrimFunc_ReluGrad(%138, %20) cnode_attrs: {convert_attr_node: Bool(1)} cnode_primal_attrs: {unique_id: "41821"}
+      : (<Tensor[Float32], (64, 512)>, <Tensor[Float32], (64, 512)>) -> (<Tensor[Float32], (64, 512)>)
+      #scope: (Default)
+  %142(CNode_1205) = EnvironCreate()
+      #scope: (Default)
+  %143(CNode_1206) = MakeTuple(%142)
+      : (<Object:EnvType, NoShape>) -> (<Tuple[Object:EnvType], TupleShape(NoShape)>)
+      #scope: (Default)
+  %144(equiv_215_CNode_1207) = PrimFunc_MatMul(%141, %para5_Parameter_1053, Bool(0), Bool(0)) cnode_attrs: {convert_attr_node: Bool(1)} cnode_primal_attrs: {unique_id: "41785"}
+      : (<Tensor[Float32], (64, 512)>, <Ref[Tensor[Float32]], (512, 512)>, <Bool, NoShape>, <Bool, NoShape>) -> (<Tensor[Float32], (64, 512)>)
+      #scope: (Default)
+  %145(CNode_1208) = EnvironCreate()
+      #scope: (Default)
+  %146(CNode_1209) = MakeTuple(%145)
+      : (<Object:EnvType, NoShape>) -> (<Tuple[Object:EnvType], TupleShape(NoShape)>)
+      #scope: (Default)
+  %147(equiv_214_CNode_1210) = PrimFunc_ReluGrad(%144, %11) cnode_attrs: {convert_attr_node: Bool(1)} cnode_primal_attrs: {unique_id: "41765"}
+      : (<Tensor[Float32], (64, 512)>, <Tensor[Float32], (64, 512)>) -> (<Tensor[Float32], (64, 512)>)
+      #scope: (Default)
+  %148(CNode_1211) = EnvironCreate()
+      #scope: (Default)
+  %149(CNode_1212) = MakeTuple(%148)
+      : (<Object:EnvType, NoShape>) -> (<Tuple[Object:EnvType], TupleShape(NoShape)>)
+      #scope: (Default)
+  %150(equiv_216_CNode_1213) = PrimFunc_MatMul(%147, %2, Bool(1), Bool(0)) cnode_attrs: {convert_attr_node: Bool(1)} cnode_primal_attrs: {unique_id: "41733"}
+      : (<Tensor[Float32], (64, 512)>, <Tensor[Float32], (64, 784)>, <Bool, NoShape>, <Bool, NoShape>) -> (<Tensor[Float32], (512, 784)>)
+      #scope: (Default)
+  %151(equiv_213_CNode_1214) = PrimFunc_BiasAddGrad(%147, I64(0)) cnode_primal_attrs: {unique_id: "41753"}
+      : (<Tensor[Float32], (64, 512)>, <Int64, NoShape>) -> (<Tensor[Float32], (512)>)
+      #scope: (Default)
+  %152(equiv_212_CNode_1215) = PrimFunc_MatMul(%141, %11, Bool(1), Bool(0)) cnode_attrs: {convert_attr_node: Bool(1)} cnode_primal_attrs: {unique_id: "41789"}
+      : (<Tensor[Float32], (64, 512)>, <Tensor[Float32], (64, 512)>, <Bool, NoShape>, <Bool, NoShape>) -> (<Tensor[Float32], (512, 512)>)
+      #scope: (Default)
+  %153(equiv_209_CNode_1216) = PrimFunc_BiasAddGrad(%141, I64(0)) cnode_primal_attrs: {unique_id: "41809"}
+      : (<Tensor[Float32], (64, 512)>, <Int64, NoShape>) -> (<Tensor[Float32], (512)>)
+      #scope: (Default)
+  %154(equiv_208_CNode_1217) = PrimFunc_MatMul(%135, %20, Bool(1), Bool(0)) cnode_attrs: {convert_attr_node: Bool(1)} cnode_primal_attrs: {unique_id: "41845"}
+      : (<Tensor[Float32], (64, 10)>, <Tensor[Float32], (64, 512)>, <Bool, NoShape>, <Bool, NoShape>) -> (<Tensor[Float32], (10, 512)>)
+      #scope: (Default)
+  %155(equiv_149_CNode_1218) = PrimFunc_BiasAddGrad(%135, I64(0)) cnode_primal_attrs: {unique_id: "41865"}
+      : (<Tensor[Float32], (64, 10)>, <Int64, NoShape>) -> (<Tensor[Float32], (10)>)
+      #scope: (Default)
+  %156(CNode_1219) = MakeTupleGradient_make_tuple_gradient(%150, %151, %152, %153, %154, %155)
+      : (<Tensor[Float32], (512, 784)>, <Tensor[Float32], (512)>, <Tensor[Float32], (512, 512)>, <Tensor[Float32], (512)>, <Tensor[Float32], (10, 512)>, <Tensor[Float32], (10)>) -> (<Tuple[Tuple[Tensor[Float32]*6],Func], TupleShape(TupleShape((512, 784), (512), (512, 512), (512), (10, 512), (10)), NoShape)>)
+      #scope: (Default)
+  %157(CNode_1220) = TupleGetItem(%156, I64(1))
+      : (<Tuple[Tuple[Tensor[Float32]*6],Func], TupleShape(TupleShape((512, 784), (512), (512, 512), (512), (10, 512), (10)), NoShape)>, <Int64, NoShape>) -> (<Func, NoShape>)
+      #scope: (Default)
+  %158(CNode_1221) = MakeTuple(%para9_Parameter_1057, %para10_Parameter_1058, %para11_Parameter_1059, %para12_Parameter_1060, %para13_Parameter_1061, %para14_Parameter_1062)
+      : (<Tensor[Float32], (512, 784)>, <Tensor[Float32], (512)>, <Tensor[Float32], (512, 512)>, <Tensor[Float32], (512)>, <Tensor[Float32], (10, 512)>, <Tensor[Float32], (10)>) -> (<Tuple[Tensor[Float32]*6], TupleShape((512, 784), (512), (512, 512), (512), (10, 512), (10))>)
+      #scope: (Default)
+  %159(CNode_1222) = %157(%158)
+      : (<Tuple[Tensor[Float32]*6], TupleShape((512, 784), (512), (512, 512), (512), (10, 512), (10))>) -> (<Tuple[Object:EnvType,Tensor[Float32]*6], TupleShape(NoShape, (512, 784), (512), (512, 512), (512), (10, 512), (10))>)
+      #scope: (Default)
+  %160(CNode_1223) = TupleGetItem(%159, I64(1)) cnode_attrs: {check_complex: Bool(1)}
+      : (<Tuple[Object:EnvType,Tensor[Float32]*6], TupleShape(NoShape, (512, 784), (512), (512, 512), (512), (10, 512), (10))>, <Int64, NoShape>) -> (<Tensor[Float32], (512, 784)>)
+      #scope: (Default)
+  %161(CNode_1224) = BpropMetaFuncGraph_BpropMetaFuncGraphMatMul{BpropMetaFuncGraphMatMul}(%147, %2, Bool(1), Bool(0), %150, %160) cnode_primal_attrs: {forward_node_name: "MatMul_41733", forward_unique_id: "41733"}
+      : (<Tensor[Float32], (64, 512)>, <Tensor[Float32], (64, 784)>, <Bool, NoShape>, <Bool, NoShape>, <Tensor[Float32], (512, 784)>, <Tensor[Float32], (512, 784)>) -> (<Tuple[Tensor[Float32]*2,Bool*2], TupleShape((64, 512), (64, 784), NoShape, NoShape)>)
+      #scope: (Gradients/Default/Grad_MatMul)
+  %162(CNode_1225) = TupleAdd_tuple_add(%149, %161)
+      : (<Tuple[Object:EnvType], TupleShape(NoShape)>, <Tuple[Tensor[Float32]*2,Bool*2], TupleShape((64, 512), (64, 784), NoShape, NoShape)>) -> (<Tuple[Object:EnvType,Tensor[Float32]*2,Bool*2], TupleShape(NoShape, (64, 512), (64, 784), NoShape, NoShape)>)
+      #scope: (Default)
+  %163(CNode_1226) = TupleGetItem(%162, I64(1)) cnode_attrs: {check_complex: Bool(1)}
+      : (<Tuple[Object:EnvType,Tensor[Float32]*2,Bool*2], TupleShape(NoShape, (64, 512), (64, 784), NoShape, NoShape)>, <Int64, NoShape>) -> (<Tensor[Float32], (64, 512)>)
+      #scope: (Bprop/gradMatMul)
+  %164(CNode_1227) = EnvironCreate()
+      #scope: (Default)
+  %165(CNode_1228) = MakeTuple(%164)
+      : (<Object:EnvType, NoShape>) -> (<Tuple[Object:EnvType], TupleShape(NoShape)>)
+      #scope: (Default)
+  %166(CNode_1229) = TupleGetItem(%159, I64(2)) cnode_attrs: {check_complex: Bool(1)}
+      : (<Tuple[Object:EnvType,Tensor[Float32]*6], TupleShape(NoShape, (512, 784), (512), (512, 512), (512), (10, 512), (10))>, <Int64, NoShape>) -> (<Tensor[Float32], (512)>)
+      #scope: (Default)
+  %167(CNode_1230) = BpropMetaFuncGraph_BpropMetaFuncGraphBiasAddGrad{BpropMetaFuncGraphBiasAddGrad}(%147, I64(0), %151, %166) cnode_primal_attrs: {forward_node_name: "BiasAddGrad_41753", forward_unique_id: "41753"}
+      : (<Tensor[Float32], (64, 512)>, <Int64, NoShape>, <Tensor[Float32], (512)>, <Tensor[Float32], (512)>) -> (<Tuple[Tensor[Float32],Int64], TupleShape((64, 512), NoShape)>)
+      #scope: (Gradients/Default/Grad_BiasAddGrad)
+  %168(CNode_1231) = TupleAdd_tuple_add(%165, %167)
+      : (<Tuple[Object:EnvType], TupleShape(NoShape)>, <Tuple[Tensor[Float32],Int64], TupleShape((64, 512), NoShape)>) -> (<Tuple[Object:EnvType,Tensor[Float32],Int64], TupleShape(NoShape, (64, 512), NoShape)>)
+      #scope: (Default)
+  %169(CNode_1232) = TupleGetItem(%168, I64(1)) cnode_attrs: {check_complex: Bool(1)}
+      : (<Tuple[Object:EnvType,Tensor[Float32],Int64], TupleShape(NoShape, (64, 512), NoShape)>, <Int64, NoShape>) -> (<Tensor[Float32], (64, 512)>)
+      #scope: (Bprop/gradBiasAdd)
+  %170(CNode_1233) = HyperMapPy_hyper_map[add_backward]{fn_leaf: MultitypeFuncGraph_add_backward{(Number, Number), (IOMonad, IOMonad), (EnvType, EnvType), (NoneType, NoneType), (Tensor, Tensor), (CSRTensor, CSRTensor), (UMonad, UMonad), (RowTensor, Tensor), (COOTensor, COOTensor), (CSRTensor, Tuple), (Tuple, CSRTensor), (COOTensor, Tuple), (Tuple, COOTensor), (MapTensor, MapTensor)}}(%163, %169)
+      : (<Tensor[Float32], (64, 512)>, <Tensor[Float32], (64, 512)>) -> (<Tensor[Float32], (64, 512)>)
+      #scope: (Gradients/Bprop/gradReLU)
+  %171(CNode_1234) = BpropMetaFuncGraph_BpropMetaFuncGraphReluGrad{BpropMetaFuncGraphReluGrad}(%144, %11, %147, %170) cnode_primal_attrs: {forward_node_name: "ReluGrad_41765", forward_unique_id: "41765"}
+      : (<Tensor[Float32], (64, 512)>, <Tensor[Float32], (64, 512)>, <Tensor[Float32], (64, 512)>, <Tensor[Float32], (64, 512)>) -> (<Tuple[Tensor[Float32]*2], TupleShape((64, 512), (64, 512))>)
+      #scope: (Gradients/Default/Grad_ReluGrad)
+  %172(CNode_1235) = TupleAdd_tuple_add(%146, %171)
+      : (<Tuple[Object:EnvType], TupleShape(NoShape)>, <Tuple[Tensor[Float32]*2], TupleShape((64, 512), (64, 512))>) -> (<Tuple[Object:EnvType,Tensor[Float32]*2], TupleShape(NoShape, (64, 512), (64, 512))>)
+      #scope: (Default)
+  %173(CNode_1236) = TupleGetItem(%172, I64(1)) cnode_attrs: {check_complex: Bool(1)}
+      : (<Tuple[Object:EnvType,Tensor[Float32]*2], TupleShape(NoShape, (64, 512), (64, 512))>, <Int64, NoShape>) -> (<Tensor[Float32], (64, 512)>)
+      #scope: (Bprop/gradReLU)
+  %174(CNode_1237) = BpropMetaFuncGraph_BpropMetaFuncGraphMatMul{BpropMetaFuncGraphMatMul}(%141, %para5_Parameter_1053, Bool(0), Bool(0), %144, %173) cnode_primal_attrs: {forward_node_name: "MatMul_41785", forward_unique_id: "41785"}
+      : (<Tensor[Float32], (64, 512)>, <Ref[Tensor[Float32]], (512, 512)>, <Bool, NoShape>, <Bool, NoShape>, <Tensor[Float32], (64, 512)>, <Tensor[Float32], (64, 512)>) -> (<Tuple[Tensor[Float32]*2,Bool*2], TupleShape((64, 512), (512, 512), NoShape, NoShape)>)
+      #scope: (Gradients/Default/Grad_MatMul)
+  %175(CNode_1238) = TupleAdd_tuple_add(%143, %174)
+      : (<Tuple[Object:EnvType], TupleShape(NoShape)>, <Tuple[Tensor[Float32]*2,Bool*2], TupleShape((64, 512), (512, 512), NoShape, NoShape)>) -> (<Tuple[Object:EnvType,Tensor[Float32]*2,Bool*2], TupleShape(NoShape, (64, 512), (512, 512), NoShape, NoShape)>)
+      #scope: (Default)
+  %176(CNode_1239) = TupleGetItem(%175, I64(1)) cnode_attrs: {check_complex: Bool(1)}
+      : (<Tuple[Object:EnvType,Tensor[Float32]*2,Bool*2], TupleShape(NoShape, (64, 512), (512, 512), NoShape, NoShape)>, <Int64, NoShape>) -> (<Tensor[Float32], (64, 512)>)
+      #scope: (Bprop/gradMatMul)
+  %177(CNode_1240) = EnvironCreate()
+      #scope: (Default)
+  %178(CNode_1241) = MakeTuple(%177)
+      : (<Object:EnvType, NoShape>) -> (<Tuple[Object:EnvType], TupleShape(NoShape)>)
+      #scope: (Default)
+  %179(CNode_1242) = TupleGetItem(%159, I64(3)) cnode_attrs: {check_complex: Bool(1)}
+      : (<Tuple[Object:EnvType,Tensor[Float32]*6], TupleShape(NoShape, (512, 784), (512), (512, 512), (512), (10, 512), (10))>, <Int64, NoShape>) -> (<Tensor[Float32], (512, 512)>)
+      #scope: (Default)
+  %180(CNode_1243) = BpropMetaFuncGraph_BpropMetaFuncGraphMatMul{BpropMetaFuncGraphMatMul}(%141, %11, Bool(1), Bool(0), %152, %179) cnode_primal_attrs: {forward_node_name: "MatMul_41789", forward_unique_id: "41789"}
+      : (<Tensor[Float32], (64, 512)>, <Tensor[Float32], (64, 512)>, <Bool, NoShape>, <Bool, NoShape>, <Tensor[Float32], (512, 512)>, <Tensor[Float32], (512, 512)>) -> (<Tuple[Tensor[Float32]*2,Bool*2], TupleShape((64, 512), (64, 512), NoShape, NoShape)>)
+      #scope: (Gradients/Default/Grad_MatMul)
+  %181(CNode_1244) = TupleAdd_tuple_add(%178, %180)
+      : (<Tuple[Object:EnvType], TupleShape(NoShape)>, <Tuple[Tensor[Float32]*2,Bool*2], TupleShape((64, 512), (64, 512), NoShape, NoShape)>) -> (<Tuple[Object:EnvType,Tensor[Float32]*2,Bool*2], TupleShape(NoShape, (64, 512), (64, 512), NoShape, NoShape)>)
+      #scope: (Default)
+  %182(CNode_1245) = TupleGetItem(%181, I64(1)) cnode_attrs: {check_complex: Bool(1)}
+      : (<Tuple[Object:EnvType,Tensor[Float32]*2,Bool*2], TupleShape(NoShape, (64, 512), (64, 512), NoShape, NoShape)>, <Int64, NoShape>) -> (<Tensor[Float32], (64, 512)>)
+      #scope: (Bprop/gradMatMul)
+  %183(CNode_1246) = HyperMapPy_hyper_map[add_backward]{fn_leaf: MultitypeFuncGraph_add_backward{(Number, Number), (IOMonad, IOMonad), (EnvType, EnvType), (NoneType, NoneType), (Tensor, Tensor), (CSRTensor, CSRTensor), (UMonad, UMonad), (RowTensor, Tensor), (COOTensor, COOTensor), (CSRTensor, Tuple), (Tuple, CSRTensor), (COOTensor, Tuple), (Tuple, COOTensor), (MapTensor, MapTensor)}}(%176, %182)
+      : (<Tensor[Float32], (64, 512)>, <Tensor[Float32], (64, 512)>) -> (<Tensor[Float32], (64, 512)>)
+      #scope: (Gradients/Bprop/gradReLU)
+  %184(CNode_1247) = EnvironCreate()
+      #scope: (Default)
+  %185(CNode_1248) = MakeTuple(%184)
+      : (<Object:EnvType, NoShape>) -> (<Tuple[Object:EnvType], TupleShape(NoShape)>)
+      #scope: (Default)
+  %186(CNode_1249) = TupleGetItem(%159, I64(4)) cnode_attrs: {check_complex: Bool(1)}
+      : (<Tuple[Object:EnvType,Tensor[Float32]*6], TupleShape(NoShape, (512, 784), (512), (512, 512), (512), (10, 512), (10))>, <Int64, NoShape>) -> (<Tensor[Float32], (512)>)
+      #scope: (Default)
+  %187(CNode_1250) = BpropMetaFuncGraph_BpropMetaFuncGraphBiasAddGrad{BpropMetaFuncGraphBiasAddGrad}(%141, I64(0), %153, %186) cnode_primal_attrs: {forward_node_name: "BiasAddGrad_41809", forward_unique_id: "41809"}
+      : (<Tensor[Float32], (64, 512)>, <Int64, NoShape>, <Tensor[Float32], (512)>, <Tensor[Float32], (512)>) -> (<Tuple[Tensor[Float32],Int64], TupleShape((64, 512), NoShape)>)
+      #scope: (Gradients/Default/Grad_BiasAddGrad)
+  %188(CNode_1251) = TupleAdd_tuple_add(%185, %187)
+      : (<Tuple[Object:EnvType], TupleShape(NoShape)>, <Tuple[Tensor[Float32],Int64], TupleShape((64, 512), NoShape)>) -> (<Tuple[Object:EnvType,Tensor[Float32],Int64], TupleShape(NoShape, (64, 512), NoShape)>)
+      #scope: (Default)
+  %189(CNode_1252) = TupleGetItem(%188, I64(1)) cnode_attrs: {check_complex: Bool(1)}
+      : (<Tuple[Object:EnvType,Tensor[Float32],Int64], TupleShape(NoShape, (64, 512), NoShape)>, <Int64, NoShape>) -> (<Tensor[Float32], (64, 512)>)
+      #scope: (Bprop/gradBiasAdd)
+  %190(CNode_1253) = HyperMapPy_hyper_map[add_backward]{fn_leaf: MultitypeFuncGraph_add_backward{(Number, Number), (IOMonad, IOMonad), (EnvType, EnvType), (NoneType, NoneType), (Tensor, Tensor), (CSRTensor, CSRTensor), (UMonad, UMonad), (RowTensor, Tensor), (COOTensor, COOTensor), (CSRTensor, Tuple), (Tuple, CSRTensor), (COOTensor, Tuple), (Tuple, COOTensor), (MapTensor, MapTensor)}}(%183, %189)
+      : (<Tensor[Float32], (64, 512)>, <Tensor[Float32], (64, 512)>) -> (<Tensor[Float32], (64, 512)>)
+      #scope: (Gradients/Bprop/gradReLU)
+  %191(CNode_1254) = BpropMetaFuncGraph_BpropMetaFuncGraphReluGrad{BpropMetaFuncGraphReluGrad}(%138, %20, %141, %190) cnode_primal_attrs: {forward_node_name: "ReluGrad_41821", forward_unique_id: "41821"}
+      : (<Tensor[Float32], (64, 512)>, <Tensor[Float32], (64, 512)>, <Tensor[Float32], (64, 512)>, <Tensor[Float32], (64, 512)>) -> (<Tuple[Tensor[Float32]*2], TupleShape((64, 512), (64, 512))>)
+      #scope: (Gradients/Default/Grad_ReluGrad)
+  %192(CNode_1255) = TupleAdd_tuple_add(%140, %191)
+      : (<Tuple[Object:EnvType], TupleShape(NoShape)>, <Tuple[Tensor[Float32]*2], TupleShape((64, 512), (64, 512))>) -> (<Tuple[Object:EnvType,Tensor[Float32]*2], TupleShape(NoShape, (64, 512), (64, 512))>)
+      #scope: (Default)
+  %193(CNode_1256) = TupleGetItem(%192, I64(1)) cnode_attrs: {check_complex: Bool(1)}
+      : (<Tuple[Object:EnvType,Tensor[Float32]*2], TupleShape(NoShape, (64, 512), (64, 512))>, <Int64, NoShape>) -> (<Tensor[Float32], (64, 512)>)
+      #scope: (Bprop/gradReLU)
+  %194(CNode_1257) = BpropMetaFuncGraph_BpropMetaFuncGraphMatMul{BpropMetaFuncGraphMatMul}(%135, %para7_Parameter_1055, Bool(0), Bool(0), %138, %193) cnode_primal_attrs: {forward_node_name: "MatMul_41841", forward_unique_id: "41841"}
+      : (<Tensor[Float32], (64, 10)>, <Ref[Tensor[Float32]], (10, 512)>, <Bool, NoShape>, <Bool, NoShape>, <Tensor[Float32], (64, 512)>, <Tensor[Float32], (64, 512)>) -> (<Tuple[Tensor[Float32]*2,Bool*2], TupleShape((64, 10), (10, 512), NoShape, NoShape)>)
+      #scope: (Gradients/Default/Grad_MatMul)
+  %195(CNode_1258) = TupleAdd_tuple_add(%137, %194)
+      : (<Tuple[Object:EnvType], TupleShape(NoShape)>, <Tuple[Tensor[Float32]*2,Bool*2], TupleShape((64, 10), (10, 512), NoShape, NoShape)>) -> (<Tuple[Object:EnvType,Tensor[Float32]*2,Bool*2], TupleShape(NoShape, (64, 10), (10, 512), NoShape, NoShape)>)
+      #scope: (Default)
+  %196(CNode_1259) = TupleGetItem(%195, I64(1)) cnode_attrs: {check_complex: Bool(1)}
+      : (<Tuple[Object:EnvType,Tensor[Float32]*2,Bool*2], TupleShape(NoShape, (64, 10), (10, 512), NoShape, NoShape)>, <Int64, NoShape>) -> (<Tensor[Float32], (64, 10)>)
+      #scope: (Bprop/gradMatMul)
+  %197(CNode_1260) = EnvironCreate()
+      #scope: (Default)
+  %198(CNode_1261) = MakeTuple(%197)
+      : (<Object:EnvType, NoShape>) -> (<Tuple[Object:EnvType], TupleShape(NoShape)>)
+      #scope: (Default)
+  %199(CNode_1262) = TupleGetItem(%159, I64(5)) cnode_attrs: {check_complex: Bool(1)}
+      : (<Tuple[Object:EnvType,Tensor[Float32]*6], TupleShape(NoShape, (512, 784), (512), (512, 512), (512), (10, 512), (10))>, <Int64, NoShape>) -> (<Tensor[Float32], (10, 512)>)
+      #scope: (Default)
+  %200(CNode_1263) = BpropMetaFuncGraph_BpropMetaFuncGraphMatMul{BpropMetaFuncGraphMatMul}(%135, %20, Bool(1), Bool(0), %154, %199) cnode_primal_attrs: {forward_node_name: "MatMul_41845", forward_unique_id: "41845"}
+      : (<Tensor[Float32], (64, 10)>, <Tensor[Float32], (64, 512)>, <Bool, NoShape>, <Bool, NoShape>, <Tensor[Float32], (10, 512)>, <Tensor[Float32], (10, 512)>) -> (<Tuple[Tensor[Float32]*2,Bool*2], TupleShape((64, 10), (64, 512), NoShape, NoShape)>)
+      #scope: (Gradients/Default/Grad_MatMul)
+  %201(CNode_1264) = TupleAdd_tuple_add(%198, %200)
+      : (<Tuple[Object:EnvType], TupleShape(NoShape)>, <Tuple[Tensor[Float32]*2,Bool*2], TupleShape((64, 10), (64, 512), NoShape, NoShape)>) -> (<Tuple[Object:EnvType,Tensor[Float32]*2,Bool*2], TupleShape(NoShape, (64, 10), (64, 512), NoShape, NoShape)>)
+      #scope: (Default)
+  %202(CNode_1265) = TupleGetItem(%201, I64(1)) cnode_attrs: {check_complex: Bool(1)}
+      : (<Tuple[Object:EnvType,Tensor[Float32]*2,Bool*2], TupleShape(NoShape, (64, 10), (64, 512), NoShape, NoShape)>, <Int64, NoShape>) -> (<Tensor[Float32], (64, 10)>)
+      #scope: (Bprop/gradMatMul)
+  %203(CNode_1266) = HyperMapPy_hyper_map[add_backward]{fn_leaf: MultitypeFuncGraph_add_backward{(Number, Number), (IOMonad, IOMonad), (EnvType, EnvType), (NoneType, NoneType), (Tensor, Tensor), (CSRTensor, CSRTensor), (UMonad, UMonad), (RowTensor, Tensor), (COOTensor, COOTensor), (CSRTensor, Tuple), (Tuple, CSRTensor), (COOTensor, Tuple), (Tuple, COOTensor), (MapTensor, MapTensor)}}(%196, %202)
+      : (<Tensor[Float32], (64, 10)>, <Tensor[Float32], (64, 10)>) -> (<Tensor[Float32], (64, 10)>)
+      #scope: (Gradients/Default)
+  %204(CNode_1267) = EnvironCreate()
+      #scope: (Default)
+  %205(CNode_1268) = MakeTuple(%204)
+      : (<Object:EnvType, NoShape>) -> (<Tuple[Object:EnvType], TupleShape(NoShape)>)
+      #scope: (Default)
+  %206(CNode_1269) = TupleGetItem(%159, I64(6)) cnode_attrs: {check_complex: Bool(1)}
+      : (<Tuple[Object:EnvType,Tensor[Float32]*6], TupleShape(NoShape, (512, 784), (512), (512, 512), (512), (10, 512), (10))>, <Int64, NoShape>) -> (<Tensor[Float32], (10)>)
+      #scope: (Default)
+  %207(CNode_1270) = BpropMetaFuncGraph_BpropMetaFuncGraphBiasAddGrad{BpropMetaFuncGraphBiasAddGrad}(%135, I64(0), %155, %206) cnode_primal_attrs: {forward_node_name: "BiasAddGrad_41865", forward_unique_id: "41865"}
+      : (<Tensor[Float32], (64, 10)>, <Int64, NoShape>, <Tensor[Float32], (10)>, <Tensor[Float32], (10)>) -> (<Tuple[Tensor[Float32],Int64], TupleShape((64, 10), NoShape)>)
+      #scope: (Gradients/Default/Grad_BiasAddGrad)
+  %208(CNode_1271) = TupleAdd_tuple_add(%205, %207)
+      : (<Tuple[Object:EnvType], TupleShape(NoShape)>, <Tuple[Tensor[Float32],Int64], TupleShape((64, 10), NoShape)>) -> (<Tuple[Object:EnvType,Tensor[Float32],Int64], TupleShape(NoShape, (64, 10), NoShape)>)
+      #scope: (Default)
+  %209(CNode_1272) = TupleGetItem(%208, I64(1)) cnode_attrs: {check_complex: Bool(1)}
+      : (<Tuple[Object:EnvType,Tensor[Float32],Int64], TupleShape(NoShape, (64, 10), NoShape)>, <Int64, NoShape>) -> (<Tensor[Float32], (64, 10)>)
+      #scope: (Bprop/gradBiasAdd)
+  %210(CNode_1273) = HyperMapPy_hyper_map[add_backward]{fn_leaf: MultitypeFuncGraph_add_backward{(Number, Number), (IOMonad, IOMonad), (EnvType, EnvType), (NoneType, NoneType), (Tensor, Tensor), (CSRTensor, CSRTensor), (UMonad, UMonad), (RowTensor, Tensor), (COOTensor, COOTensor), (CSRTensor, Tuple), (Tuple, CSRTensor), (COOTensor, Tuple), (Tuple, COOTensor), (MapTensor, MapTensor)}}(%203, %209)
+      : (<Tensor[Float32], (64, 10)>, <Tensor[Float32], (64, 10)>) -> (<Tensor[Float32], (64, 10)>)
+      #scope: (Gradients/Default)
+  %211(CNode_1274) = BpropMetaFuncGraph_BpropMetaFuncGraphAdd{BpropMetaFuncGraphAdd}(%124, %134, %135, %210) cnode_primal_attrs: {forward_node_name: "Add_42467", forward_unique_id: "42467"}
+      : (<Tensor[Float32], (64, 10)>, <Tensor[Float32], (64, 10)>, <Tensor[Float32], (64, 10)>, <Tensor[Float32], (64, 10)>) -> (<Tuple[Tensor[Float32]*2], TupleShape((64, 10), (64, 10))>)
+      #scope: (Gradients/Default/Grad_Add)
+  %212(CNode_1275) = TupleAdd_tuple_add(%126, %211)
+      : (<Tuple[Object:EnvType], TupleShape(NoShape)>, <Tuple[Tensor[Float32]*2], TupleShape((64, 10), (64, 10))>) -> (<Tuple[Object:EnvType,Tensor[Float32]*2], TupleShape(NoShape, (64, 10), (64, 10))>)
+      #scope: (Default)
+  %213(CNode_1276) = TupleGetItem(%212, I64(1)) cnode_attrs: {check_complex: Bool(1)}
+      : (<Tuple[Object:EnvType,Tensor[Float32]*2], TupleShape(NoShape, (64, 10), (64, 10))>, <Int64, NoShape>) -> (<Tensor[Float32], (64, 10)>)
+      #scope: (Default)
+  %214(CNode_1277) = BpropMetaFuncGraph_BpropMetaFuncGraphAdd{BpropMetaFuncGraphAdd}(%106, %121, %124, %213) cnode_primal_attrs: {forward_node_name: "Add_42463", forward_unique_id: "42463"}
+      : (<Tensor[Float32], (64, 10)>, <Tensor[Float32], (64, 10)>, <Tensor[Float32], (64, 10)>, <Tensor[Float32], (64, 10)>) -> (<Tuple[Tensor[Float32]*2], TupleShape((64, 10), (64, 10))>)
+      #scope: (Gradients/Default/Grad_Add)
+  %215(CNode_1278) = TupleAdd_tuple_add(%123, %214)
+      : (<Tuple[Object:EnvType], TupleShape(NoShape)>, <Tuple[Tensor[Float32]*2], TupleShape((64, 10), (64, 10))>) -> (<Tuple[Object:EnvType,Tensor[Float32]*2], TupleShape(NoShape, (64, 10), (64, 10))>)
+      #scope: (Default)
+  %216(CNode_1279) = TupleGetItem(%215, I64(2)) cnode_attrs: {check_complex: Bool(1)}
+      : (<Tuple[Object:EnvType,Tensor[Float32]*2], TupleShape(NoShape, (64, 10), (64, 10))>, <Int64, NoShape>) -> (<Tensor[Float32], (64, 10)>)
+      #scope: (Default)
+  %217(CNode_1280) = EnvironCreate()
+      #scope: (Default)
+  %218(CNode_1281) = MakeTuple(%217)
+      : (<Object:EnvType, NoShape>) -> (<Tuple[Object:EnvType], TupleShape(NoShape)>)
+      #scope: (Default)
+  %219(CNode_1282) = EnvironCreate()
+      #scope: (Default)
+  %220(CNode_1283) = MakeTuple(%219)
+      : (<Object:EnvType, NoShape>) -> (<Tuple[Object:EnvType], TupleShape(NoShape)>)
+      #scope: (Default)
+  %221(CNode_1284) = EnvironCreate()
+      #scope: (Default)
+  %222(CNode_1285) = MakeTuple(%221)
+      : (<Object:EnvType, NoShape>) -> (<Tuple[Object:EnvType], TupleShape(NoShape)>)
+      #scope: (Default)
+  %223(CNode_1286) = EnvironCreate()
+      #scope: (Default)
+  %224(CNode_1287) = MakeTuple(%223)
+      : (<Object:EnvType, NoShape>) -> (<Tuple[Object:EnvType], TupleShape(NoShape)>)
+      #scope: (Default)
+  %225(CNode_1288) = EnvironCreate()
+      #scope: (Default)
+  %226(CNode_1289) = MakeTuple(%225)
+      : (<Object:EnvType, NoShape>) -> (<Tuple[Object:EnvType], TupleShape(NoShape)>)
+      #scope: (Default)
+  %227(CNode_1290) = TupleGetItem(%212, I64(2)) cnode_attrs: {check_complex: Bool(1)}
+      : (<Tuple[Object:EnvType,Tensor[Float32]*2], TupleShape(NoShape, (64, 10), (64, 10))>, <Int64, NoShape>) -> (<Tensor[Float32], (64, 10)>)
+      #scope: (Default)
+  %228(CNode_1291) = BpropMetaFuncGraph_BpropMetaFuncGraphMul{BpropMetaFuncGraphMul}(%133, %131, %134, %227) cnode_primal_attrs: {forward_node_name: "Mul_41892", forward_unique_id: "41892"}
+      : (<Tensor[Float32], (64, 1)>, <Tensor[Float32], (64, 10)>, <Tensor[Float32], (64, 10)>, <Tensor[Float32], (64, 10)>) -> (<Tuple[Tensor[Float32]*2], TupleShape((64, 1), (64, 10))>)
+      #scope: (Gradients/Default/Grad_Mul)
+  %229(CNode_1292) = TupleAdd_tuple_add(%226, %228)
+      : (<Tuple[Object:EnvType], TupleShape(NoShape)>, <Tuple[Tensor[Float32]*2], TupleShape((64, 1), (64, 10))>) -> (<Tuple[Object:EnvType,Tensor[Float32]*2], TupleShape(NoShape, (64, 1), (64, 10))>)
+      #scope: (Default)
+  %230(CNode_1293) = TupleGetItem(%229, I64(1)) cnode_attrs: {check_complex: Bool(1)}
+      : (<Tuple[Object:EnvType,Tensor[Float32]*2], TupleShape(NoShape, (64, 1), (64, 10))>, <Int64, NoShape>) -> (<Tensor[Float32], (64, 1)>)
+      #scope: (Bprop/gradReduceMax)
+  %231(CNode_1294) = BpropMetaFuncGraph_BpropMetaFuncGraphDiv{BpropMetaFuncGraphDiv}(%129, %132, %133, %230) cnode_primal_attrs: {forward_node_name: "Div_41890", forward_unique_id: "41890"}
+      : (<Tensor[Float32], (64, 1)>, <Tensor[Float32], (64, 1)>, <Tensor[Float32], (64, 1)>, <Tensor[Float32], (64, 1)>) -> (<Tuple[Tensor[Float32]*2], TupleShape((64, 1), (64, 1))>)
+      #scope: (Gradients/Default/Grad_Div)
+  %232(CNode_1295) = TupleAdd_tuple_add(%224, %231)
+      : (<Tuple[Object:EnvType], TupleShape(NoShape)>, <Tuple[Tensor[Float32]*2], TupleShape((64, 1), (64, 1))>) -> (<Tuple[Object:EnvType,Tensor[Float32]*2], TupleShape(NoShape, (64, 1), (64, 1))>)
+      #scope: (Default)
+  %233(CNode_1296) = TupleGetItem(%232, I64(1)) cnode_attrs: {check_complex: Bool(1)}
+      : (<Tuple[Object:EnvType,Tensor[Float32]*2], TupleShape(NoShape, (64, 1), (64, 1))>, <Int64, NoShape>) -> (<Tensor[Float32], (64, 1)>)
+      #scope: (Bprop/gradReduceMax)
+  %234(CNode_1297) = BpropMetaFuncGraph_BpropMetaFuncGraphAdd{BpropMetaFuncGraphAdd}(%112, %128, %129, %233) cnode_primal_attrs: {forward_node_name: "Add_42465", forward_unique_id: "42465"}
+      : (<Tensor[Float32], (64, 1)>, <Tensor[Float32], (64, 1)>, <Tensor[Float32], (64, 1)>, <Tensor[Float32], (64, 1)>) -> (<Tuple[Tensor[Float32]*2], TupleShape((64, 1), (64, 1))>)
+      #scope: (Gradients/Default/Grad_Add)
+  %235(CNode_1298) = TupleAdd_tuple_add(%222, %234)
+      : (<Tuple[Object:EnvType], TupleShape(NoShape)>, <Tuple[Tensor[Float32]*2], TupleShape((64, 1), (64, 1))>) -> (<Tuple[Object:EnvType,Tensor[Float32]*2], TupleShape(NoShape, (64, 1), (64, 1))>)
+      #scope: (Default)
+  %236(CNode_1299) = TupleGetItem(%235, I64(2)) cnode_attrs: {check_complex: Bool(1)}
+      : (<Tuple[Object:EnvType,Tensor[Float32]*2], TupleShape(NoShape, (64, 1), (64, 1))>, <Int64, NoShape>) -> (<Tensor[Float32], (64, 1)>)
+      #scope: (Default)
+  %237(CNode_1300) = BpropMetaFuncGraph_BpropMetaFuncGraphSumExt{BpropMetaFuncGraphSumExt}(%127, (I64(1)), Bool(1), I64(43), %128, %236) cnode_primal_attrs: {forward_node_name: "SumExt_41914", forward_unique_id: "41914"}
+      : (<Tensor[Float32], (64, 10)>, <Tuple[Int64], TupleShape(NoShape)>, <Bool, NoShape>, <Int64, NoShape>, <Tensor[Float32], (64, 1)>, <Tensor[Float32], (64, 1)>) -> (<Tuple[Tensor[Float32],Tuple[Int64],Bool,Int64], TupleShape((64, 10), TupleShape(NoShape), NoShape, NoShape)>)
+      #scope: (Gradients/Default/Grad_SumExt)
+  %238(CNode_1301) = TupleAdd_tuple_add(%220, %237)
+      : (<Tuple[Object:EnvType], TupleShape(NoShape)>, <Tuple[Tensor[Float32],Tuple[Int64],Bool,Int64], TupleShape((64, 10), TupleShape(NoShape), NoShape, NoShape)>) -> (<Tuple[Object:EnvType,Tensor[Float32],Tuple[Int64],Bool,Int64], TupleShape(NoShape, (64, 10), TupleShape(NoShape), NoShape, NoShape)>)
+      #scope: (Default)
+  %239(CNode_1302) = TupleGetItem(%238, I64(1)) cnode_attrs: {check_complex: Bool(1)}
+      : (<Tuple[Object:EnvType,Tensor[Float32],Tuple[Int64],Bool,Int64], TupleShape(NoShape, (64, 10), TupleShape(NoShape), NoShape, NoShape)>, <Int64, NoShape>) -> (<Tensor[Float32], (64, 10)>)
+      #scope: (Bprop/gradSub)
+  %240(CNode_1303) = BpropMetaFuncGraph_BpropMetaFuncGraphNeg{BpropMetaFuncGraphNeg}(%121, %127, %239) cnode_primal_attrs: {forward_node_name: "Neg_41909", forward_unique_id: "41909"}
+      : (<Tensor[Float32], (64, 10)>, <Tensor[Float32], (64, 10)>, <Tensor[Float32], (64, 10)>) -> (<Tuple[Tensor[Float32]], TupleShape((64, 10))>)
+      #scope: (Gradients/Default/Grad_Neg)
+  %241(CNode_1304) = TupleAdd_tuple_add(%218, %240)
+      : (<Tuple[Object:EnvType], TupleShape(NoShape)>, <Tuple[Tensor[Float32]], TupleShape((64, 10))>) -> (<Tuple[Object:EnvType,Tensor[Float32]], TupleShape(NoShape, (64, 10))>)
+      #scope: (Default)
+  %242(CNode_1305) = TupleGetItem(%241, I64(1)) cnode_attrs: {check_complex: Bool(1)}
+      : (<Tuple[Object:EnvType,Tensor[Float32]], TupleShape(NoShape, (64, 10))>, <Int64, NoShape>) -> (<Tensor[Float32], (64, 10)>)
+      #scope: (Bprop/gradSub)
+  %243(CNode_1306) = HyperMapPy_hyper_map[add_backward]{fn_leaf: MultitypeFuncGraph_add_backward{(Number, Number), (IOMonad, IOMonad), (EnvType, EnvType), (NoneType, NoneType), (Tensor, Tensor), (CSRTensor, CSRTensor), (UMonad, UMonad), (RowTensor, Tensor), (COOTensor, COOTensor), (CSRTensor, Tuple), (Tuple, CSRTensor), (COOTensor, Tuple), (Tuple, COOTensor), (MapTensor, MapTensor)}}(%216, %242)
+      : (<Tensor[Float32], (64, 10)>, <Tensor[Float32], (64, 10)>) -> (<Tensor[Float32], (64, 10)>)
+      #scope: (Gradients/Bprop/gradExp)
+  %244(CNode_1307) = BpropMetaFuncGraph_BpropMetaFuncGraphMul{BpropMetaFuncGraphMul}(%118, %35, %121, %243) cnode_primal_attrs: {forward_node_name: "Mul_41924", forward_unique_id: "41924"}
+      : (<Tensor[Float32], (64, 10)>, <Tensor[Float32], (64, 10)>, <Tensor[Float32], (64, 10)>, <Tensor[Float32], (64, 10)>) -> (<Tuple[Tensor[Float32]*2], TupleShape((64, 10), (64, 10))>)
+      #scope: (Gradients/Default/Grad_Mul)
+  %245(CNode_1308) = TupleAdd_tuple_add(%120, %244)
+      : (<Tuple[Object:EnvType], TupleShape(NoShape)>, <Tuple[Tensor[Float32]*2], TupleShape((64, 10), (64, 10))>) -> (<Tuple[Object:EnvType,Tensor[Float32]*2], TupleShape(NoShape, (64, 10), (64, 10))>)
+      #scope: (Default)
+  %246(CNode_1309) = TupleGetItem(%245, I64(1)) cnode_attrs: {check_complex: Bool(1)}
+      : (<Tuple[Object:EnvType,Tensor[Float32]*2], TupleShape(NoShape, (64, 10), (64, 10))>, <Int64, NoShape>) -> (<Tensor[Float32], (64, 10)>)
+      #scope: (Bprop/gradExp)
+  %247(CNode_1310) = BpropMetaFuncGraph_BpropMetaFuncGraphTile{BpropMetaFuncGraphTile}(%115, (I64(1), I64(10)), %118, %246) cnode_primal_attrs: {forward_node_name: "Tile_41941", forward_unique_id: "41941"}
+      : (<Tensor[Float32], (64, 1)>, <Tuple[Int64*2], TupleShape(NoShape, NoShape)>, <Tensor[Float32], (64, 10)>, <Tensor[Float32], (64, 10)>) -> (<Tuple[Tensor[Float32],Tuple[Int64*2]], TupleShape((64, 1), TupleShape(NoShape, NoShape))>)
+      #scope: (Gradients/Default/Grad_Tile)
+  %248(CNode_1311) = TupleAdd_tuple_add(%117, %247)
+      : (<Tuple[Object:EnvType], TupleShape(NoShape)>, <Tuple[Tensor[Float32],Tuple[Int64*2]], TupleShape((64, 1), TupleShape(NoShape, NoShape))>) -> (<Tuple[Object:EnvType,Tensor[Float32],Tuple[Int64*2]], TupleShape(NoShape, (64, 1), TupleShape(NoShape, NoShape))>)
+      #scope: (Default)
+  %249(CNode_1312) = TupleGetItem(%248, I64(1)) cnode_attrs: {check_complex: Bool(1)}
+      : (<Tuple[Object:EnvType,Tensor[Float32],Tuple[Int64*2]], TupleShape(NoShape, (64, 1), TupleShape(NoShape, NoShape))>, <Int64, NoShape>) -> (<Tensor[Float32], (64, 1)>)
+      #scope: (Bprop/gradReduceSum)
+  %250(CNode_1313) = BpropMetaFuncGraph_BpropMetaFuncGraphDiv{BpropMetaFuncGraphDiv}(%112, %38, %115, %249) cnode_primal_attrs: {forward_node_name: "Div_41960", forward_unique_id: "41960"}
+      : (<Tensor[Float32], (64, 1)>, <Tensor[Float32], (64, 1)>, <Tensor[Float32], (64, 1)>, <Tensor[Float32], (64, 1)>) -> (<Tuple[Tensor[Float32]*2], TupleShape((64, 1), (64, 1))>)
+      #scope: (Gradients/Default/Grad_Div)
+  %251(CNode_1314) = TupleAdd_tuple_add(%114, %250)
+      : (<Tuple[Object:EnvType], TupleShape(NoShape)>, <Tuple[Tensor[Float32]*2], TupleShape((64, 1), (64, 1))>) -> (<Tuple[Object:EnvType,Tensor[Float32]*2], TupleShape(NoShape, (64, 1), (64, 1))>)
+      #scope: (Default)
+  %252(CNode_1315) = TupleGetItem(%251, I64(1)) cnode_attrs: {check_complex: Bool(1)}
+      : (<Tuple[Object:EnvType,Tensor[Float32]*2], TupleShape(NoShape, (64, 1), (64, 1))>, <Int64, NoShape>) -> (<Tensor[Float32], (64, 1)>)
+      #scope: (Bprop/gradLog)
+  %253(CNode_1316) = TupleGetItem(%235, I64(1)) cnode_attrs: {check_complex: Bool(1)}
+      : (<Tuple[Object:EnvType,Tensor[Float32]*2], TupleShape(NoShape, (64, 1), (64, 1))>, <Int64, NoShape>) -> (<Tensor[Float32], (64, 1)>)
+      #scope: (Default)
+  %254(CNode_1317) = HyperMapPy_hyper_map[add_backward]{fn_leaf: MultitypeFuncGraph_add_backward{(Number, Number), (IOMonad, IOMonad), (EnvType, EnvType), (NoneType, NoneType), (Tensor, Tensor), (CSRTensor, CSRTensor), (UMonad, UMonad), (RowTensor, Tensor), (COOTensor, COOTensor), (CSRTensor, Tuple), (Tuple, CSRTensor), (COOTensor, Tuple), (Tuple, COOTensor), (MapTensor, MapTensor)}}(%252, %253)
+      : (<Tensor[Float32], (64, 1)>, <Tensor[Float32], (64, 1)>) -> (<Tensor[Float32], (64, 1)>)
+      #scope: (Gradients/Bprop/gradSub)
+  %255(CNode_1318) = BpropMetaFuncGraph_BpropMetaFuncGraphSumExt{BpropMetaFuncGraphSumExt}(%109, (I64(1)), Bool(1), I64(43), %112, %254) cnode_primal_attrs: {forward_node_name: "SumExt_41983", forward_unique_id: "41983"}
+      : (<Tensor[Float32], (64, 10)>, <Tuple[Int64], TupleShape(NoShape)>, <Bool, NoShape>, <Int64, NoShape>, <Tensor[Float32], (64, 1)>, <Tensor[Float32], (64, 1)>) -> (<Tuple[Tensor[Float32],Tuple[Int64],Bool,Int64], TupleShape((64, 10), TupleShape(NoShape), NoShape, NoShape)>)
+      #scope: (Gradients/Default/Grad_SumExt)
+  %256(CNode_1319) = TupleAdd_tuple_add(%111, %255)
+      : (<Tuple[Object:EnvType], TupleShape(NoShape)>, <Tuple[Tensor[Float32],Tuple[Int64],Bool,Int64], TupleShape((64, 10), TupleShape(NoShape), NoShape, NoShape)>) -> (<Tuple[Object:EnvType,Tensor[Float32],Tuple[Int64],Bool,Int64], TupleShape(NoShape, (64, 10), TupleShape(NoShape), NoShape, NoShape)>)
+      #scope: (Default)
+  %257(CNode_1320) = TupleGetItem(%256, I64(1)) cnode_attrs: {check_complex: Bool(1)}
+      : (<Tuple[Object:EnvType,Tensor[Float32],Tuple[Int64],Bool,Int64], TupleShape(NoShape, (64, 10), TupleShape(NoShape), NoShape, NoShape)>, <Int64, NoShape>) -> (<Tensor[Float32], (64, 10)>)
+      #scope: (Bprop/gradSub)
+  %258(CNode_1321) = BpropMetaFuncGraph_BpropMetaFuncGraphNeg{BpropMetaFuncGraphNeg}(%106, %109, %257) cnode_primal_attrs: {forward_node_name: "Neg_41978", forward_unique_id: "41978"}
+      : (<Tensor[Float32], (64, 10)>, <Tensor[Float32], (64, 10)>, <Tensor[Float32], (64, 10)>) -> (<Tuple[Tensor[Float32]], TupleShape((64, 10))>)
+      #scope: (Gradients/Default/Grad_Neg)
+  %259(CNode_1322) = TupleAdd_tuple_add(%108, %258)
+      : (<Tuple[Object:EnvType], TupleShape(NoShape)>, <Tuple[Tensor[Float32]], TupleShape((64, 10))>) -> (<Tuple[Object:EnvType,Tensor[Float32]], TupleShape(NoShape, (64, 10))>)
+      #scope: (Default)
+  %260(CNode_1323) = TupleGetItem(%259, I64(1)) cnode_attrs: {check_complex: Bool(1)}
+      : (<Tuple[Object:EnvType,Tensor[Float32]], TupleShape(NoShape, (64, 10))>, <Int64, NoShape>) -> (<Tensor[Float32], (64, 10)>)
+      #scope: (Bprop/gradSub)
+  %261(CNode_1324) = TupleGetItem(%215, I64(1)) cnode_attrs: {check_complex: Bool(1)}
+      : (<Tuple[Object:EnvType,Tensor[Float32]*2], TupleShape(NoShape, (64, 10), (64, 10))>, <Int64, NoShape>) -> (<Tensor[Float32], (64, 10)>)
+      #scope: (Default)
+  %262(CNode_1325) = HyperMapPy_hyper_map[add_backward]{fn_leaf: MultitypeFuncGraph_add_backward{(Number, Number), (IOMonad, IOMonad), (EnvType, EnvType), (NoneType, NoneType), (Tensor, Tensor), (CSRTensor, CSRTensor), (UMonad, UMonad), (RowTensor, Tensor), (COOTensor, COOTensor), (CSRTensor, Tuple), (Tuple, CSRTensor), (COOTensor, Tuple), (Tuple, COOTensor), (MapTensor, MapTensor)}}(%260, %261)
+      : (<Tensor[Float32], (64, 10)>, <Tensor[Float32], (64, 10)>) -> (<Tensor[Float32], (64, 10)>)
+      #scope: (Gradients/Default)
+  %263(CNode_1326) = BpropMetaFuncGraph_BpropMetaFuncGraphAdd{BpropMetaFuncGraphAdd}(%92, %105, %106, %262) cnode_primal_attrs: {forward_node_name: "Add_42461", forward_unique_id: "42461"}
+      : (<Tensor[Float32], (64, 10)>, <Tensor[Float32], (64, 10)>, <Tensor[Float32], (64, 10)>, <Tensor[Float32], (64, 10)>) -> (<Tuple[Tensor[Float32]*2], TupleShape((64, 10), (64, 10))>)
+      #scope: (Gradients/Default/Grad_Add)
+  %264(CNode_1327) = TupleAdd_tuple_add(%94, %263)
+      : (<Tuple[Object:EnvType], TupleShape(NoShape)>, <Tuple[Tensor[Float32]*2], TupleShape((64, 10), (64, 10))>) -> (<Tuple[Object:EnvType,Tensor[Float32]*2], TupleShape(NoShape, (64, 10), (64, 10))>)
+      #scope: (Default)
+  %265(CNode_1328) = TupleGetItem(%264, I64(1)) cnode_attrs: {check_complex: Bool(1)}
+      : (<Tuple[Object:EnvType,Tensor[Float32]*2], TupleShape(NoShape, (64, 10), (64, 10))>, <Int64, NoShape>) -> (<Tensor[Float32], (64, 10)>)
+      #scope: (Default)
+  %266(CNode_1329) = BpropMetaFuncGraph_BpropMetaFuncGraphTile{BpropMetaFuncGraphTile}(%89, (I64(1), I64(10)), %92, %265) cnode_primal_attrs: {forward_node_name: "Tile_42107", forward_unique_id: "42107"}
+      : (<Tensor[Float32], (64, 1)>, <Tuple[Int64*2], TupleShape(NoShape, NoShape)>, <Tensor[Float32], (64, 10)>, <Tensor[Float32], (64, 10)>) -> (<Tuple[Tensor[Float32],Tuple[Int64*2]], TupleShape((64, 1), TupleShape(NoShape, NoShape))>)
+      #scope: (Gradients/Default/Grad_Tile)
+  %267(CNode_1330) = TupleAdd_tuple_add(%91, %266)
+      : (<Tuple[Object:EnvType], TupleShape(NoShape)>, <Tuple[Tensor[Float32],Tuple[Int64*2]], TupleShape((64, 1), TupleShape(NoShape, NoShape))>) -> (<Tuple[Object:EnvType,Tensor[Float32],Tuple[Int64*2]], TupleShape(NoShape, (64, 1), TupleShape(NoShape, NoShape))>)
+      #scope: (Default)
+  %268(CNode_1331) = TupleGetItem(%267, I64(1)) cnode_attrs: {check_complex: Bool(1)}
+      : (<Tuple[Object:EnvType,Tensor[Float32],Tuple[Int64*2]], TupleShape(NoShape, (64, 1), TupleShape(NoShape, NoShape))>, <Int64, NoShape>) -> (<Tensor[Float32], (64, 1)>)
+      #scope: (Bprop/gradSumExt)
+  %269(CNode_1332) = BpropMetaFuncGraph_BpropMetaFuncGraphNeg{BpropMetaFuncGraphNeg}(%86, %89, %268) cnode_primal_attrs: {forward_node_name: "Neg_42126", forward_unique_id: "42126"}
+      : (<Tensor[Float32], (64, 1)>, <Tensor[Float32], (64, 1)>, <Tensor[Float32], (64, 1)>) -> (<Tuple[Tensor[Float32]], TupleShape((64, 1))>)
+      #scope: (Gradients/Default/Grad_Neg)
+  %270(CNode_1333) = TupleAdd_tuple_add(%88, %269)
+      : (<Tuple[Object:EnvType], TupleShape(NoShape)>, <Tuple[Tensor[Float32]], TupleShape((64, 1))>) -> (<Tuple[Object:EnvType,Tensor[Float32]], TupleShape(NoShape, (64, 1))>)
+      #scope: (Default)
+  %271(CNode_1334) = TupleGetItem(%270, I64(1)) cnode_attrs: {check_complex: Bool(1)}
+      : (<Tuple[Object:EnvType,Tensor[Float32]], TupleShape(NoShape, (64, 1))>, <Int64, NoShape>) -> (<Tensor[Float32], (64, 1)>)
+      #scope: (Bprop/gradNeg)
+  %272(CNode_1335) = BpropMetaFuncGraph_BpropMetaFuncGraphMul{BpropMetaFuncGraphMul}(%81, %85, %86, %271) cnode_primal_attrs: {forward_node_name: "Mul_42210", forward_unique_id: "42210"}
+      : (<Tensor[Float32], (64, 1)>, <Tensor[Float32], (64, 1)>, <Tensor[Float32], (64, 1)>, <Tensor[Float32], (64, 1)>) -> (<Tuple[Tensor[Float32]*2], TupleShape((64, 1), (64, 1))>)
+      #scope: (Gradients/Default/Grad_Mul)
+  %273(CNode_1336) = TupleAdd_tuple_add(%83, %272)
+      : (<Tuple[Object:EnvType], TupleShape(NoShape)>, <Tuple[Tensor[Float32]*2], TupleShape((64, 1), (64, 1))>) -> (<Tuple[Object:EnvType,Tensor[Float32]*2], TupleShape(NoShape, (64, 1), (64, 1))>)
+      #scope: (Default)
+  %274(CNode_1337) = TupleGetItem(%273, I64(1)) cnode_attrs: {check_complex: Bool(1)}
+      : (<Tuple[Object:EnvType,Tensor[Float32]*2], TupleShape(NoShape, (64, 1), (64, 1))>, <Int64, NoShape>) -> (<Tensor[Float32], (64, 1)>)
+      #scope: (Bprop/gradMaskedFill)
+  %275(CNode_1338) = BpropMetaFuncGraph_BpropMetaFuncGraphReshape{BpropMetaFuncGraphReshape}(%78, (I64(64), I64(1)), %81, %274) cnode_primal_attrs: {forward_node_name: "Reshape_42248", forward_unique_id: "42248"}
+      : (<Tensor[Float32], (64)>, <Tuple[Int64*2], TupleShape(NoShape, NoShape)>, <Tensor[Float32], (64, 1)>, <Tensor[Float32], (64, 1)>) -> (<Tuple[Tensor[Float32],Tuple[Int64*2]], TupleShape((64), TupleShape(NoShape, NoShape))>)
+      #scope: (Gradients/Default/Grad_Reshape)
+  %276(CNode_1339) = TupleAdd_tuple_add(%80, %275)
+      : (<Tuple[Object:EnvType], TupleShape(NoShape)>, <Tuple[Tensor[Float32],Tuple[Int64*2]], TupleShape((64), TupleShape(NoShape, NoShape))>) -> (<Tuple[Object:EnvType,Tensor[Float32],Tuple[Int64*2]], TupleShape(NoShape, (64), TupleShape(NoShape, NoShape))>)
+      #scope: (Default)
+  %277(CNode_1340) = TupleGetItem(%276, I64(1)) cnode_attrs: {check_complex: Bool(1)}
+      : (<Tuple[Object:EnvType,Tensor[Float32],Tuple[Int64*2]], TupleShape(NoShape, (64), TupleShape(NoShape, NoShape))>, <Int64, NoShape>) -> (<Tensor[Float32], (64)>)
+      #scope: (Bprop/gradSqueeze)
+  %278(CNode_1341) = BpropMetaFuncGraph_BpropMetaFuncGraphTile{BpropMetaFuncGraphTile}(%75, (I64(64)), %78, %277) cnode_primal_attrs: {forward_node_name: "Tile_42359", forward_unique_id: "42359"}
+      : (<Tensor[Float32], (1)>, <Tuple[Int64], TupleShape(NoShape)>, <Tensor[Float32], (64)>, <Tensor[Float32], (64)>) -> (<Tuple[Tensor[Float32],Tuple[Int64]], TupleShape((1), TupleShape(NoShape))>)
+      #scope: (Gradients/Default/Grad_Tile)
+  %279(CNode_1342) = TupleAdd_tuple_add(%77, %278)
+      : (<Tuple[Object:EnvType], TupleShape(NoShape)>, <Tuple[Tensor[Float32],Tuple[Int64]], TupleShape((1), TupleShape(NoShape))>) -> (<Tuple[Object:EnvType,Tensor[Float32],Tuple[Int64]], TupleShape(NoShape, (1), TupleShape(NoShape))>)
+      #scope: (Default)
+  %280(CNode_1343) = TupleGetItem(%279, I64(1)) cnode_attrs: {check_complex: Bool(1)}
+      : (<Tuple[Object:EnvType,Tensor[Float32],Tuple[Int64]], TupleShape(NoShape, (1), TupleShape(NoShape))>, <Int64, NoShape>) -> (<Tensor[Float32], (1)>)
+      #scope: (Bprop/gradSumExt)
+  %281(CNode_1344) = BpropMetaFuncGraph_BpropMetaFuncGraphReshape{BpropMetaFuncGraphReshape}(%72, (I64(1)), %75, %280) cnode_primal_attrs: {forward_node_name: "Reshape_42356", forward_unique_id: "42356"}
+      : (<Tensor[Float32], ()>, <Tuple[Int64], TupleShape(NoShape)>, <Tensor[Float32], (1)>, <Tensor[Float32], (1)>) -> (<Tuple[Tensor[Float32],Tuple[Int64]], TupleShape((), TupleShape(NoShape))>)
+      #scope: (Gradients/Default/Grad_Reshape)
+  %282(CNode_1345) = TupleAdd_tuple_add(%74, %281)
+      : (<Tuple[Object:EnvType], TupleShape(NoShape)>, <Tuple[Tensor[Float32],Tuple[Int64]], TupleShape((), TupleShape(NoShape))>) -> (<Tuple[Object:EnvType,Tensor[Float32],Tuple[Int64]], TupleShape(NoShape, (), TupleShape(NoShape))>)
+      #scope: (Default)
+  %283(CNode_1346) = TupleGetItem(%282, I64(1)) cnode_attrs: {check_complex: Bool(1)}
+      : (<Tuple[Object:EnvType,Tensor[Float32],Tuple[Int64]], TupleShape(NoShape, (), TupleShape(NoShape))>, <Int64, NoShape>) -> (<Tensor[Float32], ()>)
+      #scope: (Bprop/gradSumExt)
+  %284(CNode_1347) = BpropMetaFuncGraph_BpropMetaFuncGraphDiv{BpropMetaFuncGraphDiv}(%71, %67, %72, %283) cnode_primal_attrs: {forward_node_name: "Div_42403", forward_unique_id: "42403"}
+      : (<Tensor[Float32], ()>, <Tensor[Float32], ()>, <Tensor[Float32], ()>, <Tensor[Float32], ()>) -> (<Tuple[Tensor[Float32]*2], TupleShape((), ())>)
+      #scope: (Gradients/Default/Grad_Div)
+  %285(CNode_1348) = TupleAdd_tuple_add(%69, %284)
+      : (<Tuple[Object:EnvType], TupleShape(NoShape)>, <Tuple[Tensor[Float32]*2], TupleShape((), ())>) -> (<Tuple[Object:EnvType,Tensor[Float32]*2], TupleShape(NoShape, (), ())>)
+      #scope: (Default)
+  %286(CNode_1349) = TupleGetItem(%285, I64(2)) cnode_attrs: {check_complex: Bool(1)}
+      : (<Tuple[Object:EnvType,Tensor[Float32]*2], TupleShape(NoShape, (), ())>, <Int64, NoShape>) -> (<Tensor[Float32], ()>)
+      #scope: (Bprop/gradDiv)
+  %287(CNode_1350) = BpropMetaFuncGraph_BpropMetaFuncGraphSumExt{BpropMetaFuncGraphSumExt}(%64, None, Bool(0), None, %67, %286) cnode_primal_attrs: {forward_node_name: "SumExt_42374", forward_unique_id: "42374"}
+      : (<Tensor[Float32], (64, 1)>, <None, NoShape>, <Bool, NoShape>, <None, NoShape>, <Tensor[Float32], ()>, <Tensor[Float32], ()>) -> (<Tuple[Tensor[Float32],Tuple[],Bool,None], TupleShape((64, 1), TupleShape(), NoShape, NoShape)>)
+      #scope: (Gradients/Default/Grad_SumExt)
+  %288(CNode_1351) = TupleAdd_tuple_add(%66, %287)
+      : (<Tuple[Object:EnvType], TupleShape(NoShape)>, <Tuple[Tensor[Float32],Tuple[],Bool,None], TupleShape((64, 1), TupleShape(), NoShape, NoShape)>) -> (<Tuple[Object:EnvType,Tensor[Float32],Tuple[],Bool,None], TupleShape(NoShape, (64, 1), TupleShape(), NoShape, NoShape)>)
+      #scope: (Default)
+  %289(CNode_1352) = TupleGetItem(%288, I64(1)) cnode_attrs: {check_complex: Bool(1)}
+      : (<Tuple[Object:EnvType,Tensor[Float32],Tuple[],Bool,None], TupleShape(NoShape, (64, 1), TupleShape(), NoShape, NoShape)>, <Int64, NoShape>) -> (<Tensor[Float32], (64, 1)>)
+      #scope: (Default)
+  %290(CNode_1353) = EnvironCreate()
+      #scope: (Default)
+  %291(CNode_1354) = MakeTuple(%290)
+      : (<Object:EnvType, NoShape>) -> (<Tuple[Object:EnvType], TupleShape(NoShape)>)
+      #scope: (Default)
+  %292(CNode_1355) = EnvironCreate()
+      #scope: (Default)
+  %293(CNode_1356) = MakeTuple(%292)
+      : (<Object:EnvType, NoShape>) -> (<Tuple[Object:EnvType], TupleShape(NoShape)>)
+      #scope: (Default)
+  %294(CNode_1357) = EnvironCreate()
+      #scope: (Default)
+  %295(CNode_1358) = MakeTuple(%294)
+      : (<Object:EnvType, NoShape>) -> (<Tuple[Object:EnvType], TupleShape(NoShape)>)
+      #scope: (Default)
+  %296(CNode_1359) = EnvironCreate()
+      #scope: (Default)
+  %297(CNode_1360) = MakeTuple(%296)
+      : (<Object:EnvType, NoShape>) -> (<Tuple[Object:EnvType], TupleShape(NoShape)>)
+      #scope: (Default)
+  %298(CNode_1361) = EnvironCreate()
+      #scope: (Default)
+  %299(CNode_1362) = MakeTuple(%298)
+      : (<Object:EnvType, NoShape>) -> (<Tuple[Object:EnvType], TupleShape(NoShape)>)
+      #scope: (Default)
+  %300(CNode_1363) = EnvironCreate()
+      #scope: (Default)
+  %301(CNode_1364) = MakeTuple(%300)
+      : (<Object:EnvType, NoShape>) -> (<Tuple[Object:EnvType], TupleShape(NoShape)>)
+      #scope: (Default)
+  %302(CNode_1365) = EnvironCreate()
+      #scope: (Default)
+  %303(CNode_1366) = MakeTuple(%302)
+      : (<Object:EnvType, NoShape>) -> (<Tuple[Object:EnvType], TupleShape(NoShape)>)
+      #scope: (Default)
+  %304(CNode_1367) = EnvironCreate()
+      #scope: (Default)
+  %305(CNode_1368) = MakeTuple(%304)
+      : (<Object:EnvType, NoShape>) -> (<Tuple[Object:EnvType], TupleShape(NoShape)>)
+      #scope: (Default)
+  %306(CNode_1369) = TupleGetItem(%264, I64(2)) cnode_attrs: {check_complex: Bool(1)}
+      : (<Tuple[Object:EnvType,Tensor[Float32]*2], TupleShape(NoShape, (64, 10), (64, 10))>, <Int64, NoShape>) -> (<Tensor[Float32], (64, 10)>)
+      #scope: (Default)
+
+#------------------------> 0
+  %307(CNode_1370) = BpropMetaFuncGraph_BpropMetaFuncGraphGatherDGradV2{BpropMetaFuncGraphGatherDGradV2}(%47, I64(-1), %54, %104, %105, %306) cnode_primal_attrs: {forward_node_name: "GatherDGradV2_42076", forward_unique_id: "42076"}
+      : (<Tensor[Float32], (64, 10)>, <Int64, NoShape>, <Tensor[Int32], (64, 1)>, <Tensor[Float32], (64, 1)>, <Tensor[Float32], (64, 10)>, <Tensor[Float32], (64, 10)>) -> (<null>)
+      #scope: (Gradients/Default/Grad_GatherDGradV2)
+  %308(CNode_1371) = TupleAdd_tuple_add(%305, %307)
+      : (<Tuple[Object:EnvType], TupleShape(NoShape)>, <null>) -> (<null>)
+      #scope: (Default)
+  %309(CNode_1372) = TupleGetItem(%308, I64(4)) cnode_attrs: {check_complex: Bool(1)}
+      : (<null>, <null>) -> (<null>)
+      #scope: (Bprop/gradGatherD)
+  %310(CNode_1373) = BpropMetaFuncGraph_BpropMetaFuncGraphNeg{BpropMetaFuncGraphNeg}(%103, %104, %309) cnode_primal_attrs: {forward_node_name: "Neg_42090", forward_unique_id: "42090"}
+      : (<Tensor[Float32], (64, 1)>, <Tensor[Float32], (64, 1)>, <null>) -> (<null>)
+      #scope: (Gradients/Default/Grad_Neg)
+  %311(CNode_1374) = TupleAdd_tuple_add(%303, %310)
+      : (<Tuple[Object:EnvType], TupleShape(NoShape)>, <null>) -> (<null>)
+      #scope: (Default)
+  %312(CNode_1375) = TupleGetItem(%311, I64(1)) cnode_attrs: {check_complex: Bool(1)}
+      : (<null>, <null>) -> (<null>)
+      #scope: (Bprop/gradNeg)
+  %313(CNode_1376) = BpropMetaFuncGraph_BpropMetaFuncGraphMul{BpropMetaFuncGraphMul}(%100, %102, %103, %312) cnode_primal_attrs: {forward_node_name: "Mul_42156", forward_unique_id: "42156"}
+      : (<Tensor[Float32], (64, 1)>, <Tensor[Float32], (64, 1)>, <Tensor[Float32], (64, 1)>, <null>) -> (<null>)
+      #scope: (Gradients/Default/Grad_Mul)
+  %314(CNode_1377) = TupleAdd_tuple_add(%301, %313)
+      : (<Tuple[Object:EnvType], TupleShape(NoShape)>, <null>) -> (<null>)
+      #scope: (Default)
+  %315(CNode_1378) = TupleGetItem(%314, I64(1)) cnode_attrs: {check_complex: Bool(1)}
+      : (<null>, <null>) -> (<null>)
+      #scope: (Bprop/gradMaskedFill)
+  %316(CNode_1379) = BpropMetaFuncGraph_BpropMetaFuncGraphReshape{BpropMetaFuncGraphReshape}(%99, (I64(64), I64(1)), %100, %315) cnode_primal_attrs: {forward_node_name: "Reshape_42230", forward_unique_id: "42230"}
+      : (<Tensor[Float32], (64)>, <Tuple[Int64*2], TupleShape(NoShape, NoShape)>, <Tensor[Float32], (64, 1)>, <null>) -> (<null>)
+      #scope: (Gradients/Default/Grad_Reshape)
+  %317(CNode_1380) = TupleAdd_tuple_add(%299, %316)
+      : (<Tuple[Object:EnvType], TupleShape(NoShape)>, <null>) -> (<null>)
+      #scope: (Default)
+  %318(CNode_1381) = TupleGetItem(%317, I64(1)) cnode_attrs: {check_complex: Bool(1)}
+      : (<null>, <null>) -> (<null>)
+      #scope: (Bprop/gradSqueeze)
+  %319(CNode_1382) = BpropMetaFuncGraph_BpropMetaFuncGraphTile{BpropMetaFuncGraphTile}(%98, (I64(64)), %99, %318) cnode_primal_attrs: {forward_node_name: "Tile_42281", forward_unique_id: "42281"}
+      : (<Tensor[Float32], (1)>, <Tuple[Int64], TupleShape(NoShape)>, <Tensor[Float32], (64)>, <null>) -> (<null>)
+      #scope: (Gradients/Default/Grad_Tile)
+  %320(CNode_1383) = TupleAdd_tuple_add(%297, %319)
+      : (<Tuple[Object:EnvType], TupleShape(NoShape)>, <null>) -> (<null>)
+      #scope: (Default)
+  %321(CNode_1384) = TupleGetItem(%320, I64(1)) cnode_attrs: {check_complex: Bool(1)}
+      : (<null>, <null>) -> (<null>)
+      #scope: (Bprop/gradSumExt)
+  %322(CNode_1385) = BpropMetaFuncGraph_BpropMetaFuncGraphReshape{BpropMetaFuncGraphReshape}(%97, (I64(1)), %98, %321) cnode_primal_attrs: {forward_node_name: "Reshape_42278", forward_unique_id: "42278"}
+      : (<Tensor[Float32], ()>, <Tuple[Int64], TupleShape(NoShape)>, <Tensor[Float32], (1)>, <null>) -> (<null>)
+      #scope: (Gradients/Default/Grad_Reshape)
+  %323(CNode_1386) = TupleAdd_tuple_add(%295, %322)
+      : (<Tuple[Object:EnvType], TupleShape(NoShape)>, <null>) -> (<null>)
+      #scope: (Default)
+  %324(CNode_1387) = TupleGetItem(%323, I64(1)) cnode_attrs: {check_complex: Bool(1)}
+      : (<null>, <null>) -> (<null>)
+      #scope: (Bprop/gradSumExt)
+  %325(CNode_1388) = BpropMetaFuncGraph_BpropMetaFuncGraphDiv{BpropMetaFuncGraphDiv}(%95, %96, %97, %324) cnode_primal_attrs: {forward_node_name: "Div_42325", forward_unique_id: "42325"}
+      : (<Tensor[Float32], ()>, <Tensor[Float32], ()>, <Tensor[Float32], ()>, <null>) -> (<null>)
+      #scope: (Gradients/Default/Grad_Div)
+  %326(CNode_1389) = TupleAdd_tuple_add(%293, %325)
+      : (<Tuple[Object:EnvType], TupleShape(NoShape)>, <null>) -> (<null>)
+      #scope: (Default)
+  %327(CNode_1390) = TupleGetItem(%326, I64(2)) cnode_attrs: {check_complex: Bool(1)}
+      : (<null>, <null>) -> (<null>)
+      #scope: (Bprop/gradDiv)
+  %328(CNode_1391) = BpropMetaFuncGraph_BpropMetaFuncGraphSumExt{BpropMetaFuncGraphSumExt}(%64, None, Bool(0), None, %96, %327) cnode_primal_attrs: {forward_node_name: "SumExt_42296", forward_unique_id: "42296"}
+      : (<Tensor[Float32], (64, 1)>, <None, NoShape>, <Bool, NoShape>, <None, NoShape>, <Tensor[Float32], ()>, <null>) -> (<null>)
+      #scope: (Gradients/Default/Grad_SumExt)
+  %329(CNode_1392) = TupleAdd_tuple_add(%291, %328)
+      : (<Tuple[Object:EnvType], TupleShape(NoShape)>, <null>) -> (<null>)
+      #scope: (Default)
+  %330(CNode_1393) = TupleGetItem(%329, I64(1)) cnode_attrs: {check_complex: Bool(1)}
+      : (<null>, <null>) -> (<null>)
+      #scope: (Default)
+  %331(CNode_1394) = HyperMapPy_hyper_map[add_backward]{fn_leaf: MultitypeFuncGraph_add_backward{(Number, Number), (IOMonad, IOMonad), (EnvType, EnvType), (NoneType, NoneType), (Tensor, Tensor), (CSRTensor, CSRTensor), (UMonad, UMonad), (RowTensor, Tensor), (COOTensor, COOTensor), (CSRTensor, Tuple), (Tuple, CSRTensor), (COOTensor, Tuple), (Tuple, COOTensor), (MapTensor, MapTensor)}}(%289, %330)
+      : (<Tensor[Float32], (64, 1)>, <null>) -> (<null>)
+      #scope: (Gradients/Default)
+  %332(CNode_1395) = BpropMetaFuncGraph_BpropMetaFuncGraphMaskedFill{BpropMetaFuncGraphMaskedFill}(%61, %53, Tensor(shape=[], dtype=Float32, value=0), %64, %331) cnode_primal_attrs: {forward_node_name: "MaskedFill_42169", forward_unique_id: "42169"}
+      : (<Tensor[Float32], (64, 1)>, <Tensor[Bool], (64, 1)>, <Tensor[Float32], ()>, <Tensor[Float32], (64, 1)>, <null>) -> (<null>)
+      #scope: (Gradients/Default/Grad_MaskedFill)
+  %333(CNode_1396) = TupleAdd_tuple_add(%63, %332)
+      : (<Tuple[Object:EnvType], TupleShape(NoShape)>, <null>) -> (<null>)
+      #scope: (Default)
+  %334(CNode_1397) = TupleGetItem(%333, I64(1))
+      : (<null>, <null>) -> (<null>)
+      #scope: (Default)
+  %335(CNode_1398) = BpropMetaFuncGraph_BpropMetaFuncGraphOnesLike{BpropMetaFuncGraphOnesLike}(%58, %61, %334) cnode_primal_attrs: {forward_node_name: "OnesLike_42801", forward_unique_id: "42801"}
+      : (<Tensor[Float32], (64, 1)>, <Tensor[Float32], (64, 1)>, <null>) -> (<null>)
+      #scope: (Gradients/Default/Grad_OnesLike)
+  %336(CNode_1399) = TupleAdd_tuple_add(%60, %335)
+      : (<Tuple[Object:EnvType], TupleShape(NoShape)>, <null>) -> (<null>)
+      #scope: (Default)
+  %337(CNode_1400) = TupleGetItem(%336, I64(1)) cnode_attrs: {check_complex: Bool(1)}
+      : (<null>, <null>) -> (<null>)
+      #scope: (Default)
+  %338(CNode_1401) = BpropMetaFuncGraph_BpropMetaFuncGraphNeg{BpropMetaFuncGraphNeg}(%55, %58, %337) cnode_primal_attrs: {forward_node_name: "Neg_42085", forward_unique_id: "42085"}
+      : (<Tensor[Float32], (64, 1)>, <Tensor[Float32], (64, 1)>, <null>) -> (<null>)
+      #scope: (Gradients/Default/Grad_Neg)
+  %339(CNode_1402) = TupleAdd_tuple_add(%57, %338)
+      : (<Tuple[Object:EnvType], TupleShape(NoShape)>, <null>) -> (<null>)
+      #scope: (Default)
+  %340(CNode_1403) = TupleGetItem(%339, I64(1)) cnode_attrs: {check_complex: Bool(1)}
+      : (<null>, <null>) -> (<null>)
+      #scope: (Default)
+  %341(CNode_1404) = BpropMetaFuncGraph_BpropMetaFuncGraphGatherD{BpropMetaFuncGraphGatherD}(%47, I64(-1), %54, %55, %340) cnode_primal_attrs: {forward_node_name: "GatherD_42070", forward_unique_id: "42070"}
+      : (<Tensor[Float32], (64, 10)>, <Int64, NoShape>, <Tensor[Int32], (64, 1)>, <Tensor[Float32], (64, 1)>, <null>) -> (<null>)
+      #scope: (Gradients/Default/Grad_GatherD)
+  %342(CNode_1405) = TupleAdd_tuple_add(%49, %341)
+      : (<Tuple[Object:EnvType], TupleShape(NoShape)>, <null>) -> (<null>)
+      #scope: (Default)
+  %343(CNode_1406) = TupleGetItem(%342, I64(1)) cnode_attrs: {check_complex: Bool(1)}
+      : (<null>, <null>) -> (<null>)
+      #scope: (Default)
+  %344(CNode_1407) = TupleGetItem(%308, I64(1)) cnode_attrs: {check_complex: Bool(1)}
+      : (<null>, <null>) -> (<null>)
+      #scope: (Bprop/gradGatherD)
+  %345(CNode_1408) = HyperMapPy_hyper_map[add_backward]{fn_leaf: MultitypeFuncGraph_add_backward{(Number, Number), (IOMonad, IOMonad), (EnvType, EnvType), (NoneType, NoneType), (Tensor, Tensor), (CSRTensor, CSRTensor), (UMonad, UMonad), (RowTensor, Tensor), (COOTensor, COOTensor), (CSRTensor, Tuple), (Tuple, CSRTensor), (COOTensor, Tuple), (Tuple, COOTensor), (MapTensor, MapTensor)}}(%343, %344)
+      : (<null>, <null>) -> (<null>)
+      #scope: (Gradients/Default)
+  %346(CNode_1409) = BpropMetaFuncGraph_BpropMetaFuncGraphSub{BpropMetaFuncGraphSub}(%26, %44, %47, %345) cnode_primal_attrs: {forward_node_name: "Sub_41973", forward_unique_id: "41973"}
+      : (<Tensor[Float32], (64, 10)>, <Tensor[Float32], (64, 1)>, <Tensor[Float32], (64, 10)>, <null>) -> (<null>)
+      #scope: (Gradients/Default/Grad_Sub)
+  %347(CNode_1410) = TupleAdd_tuple_add(%46, %346)
+      : (<Tuple[Object:EnvType], TupleShape(NoShape)>, <null>) -> (<null>)
+      #scope: (Default)
+  %348(CNode_1411) = TupleGetItem(%347, I64(2)) cnode_attrs: {check_complex: Bool(1)}
+      : (<null>, <null>) -> (<null>)
+      #scope: (Default)
+  %349(CNode_1412) = BpropMetaFuncGraph_BpropMetaFuncGraphAdd{BpropMetaFuncGraphAdd}(%41, %29, %44, %348) cnode_primal_attrs: {forward_node_name: "Add_41965", forward_unique_id: "41965"}
+      : (<Tensor[Float32], (64, 1)>, <Tensor[Float32], (64, 1)>, <Tensor[Float32], (64, 1)>, <null>) -> (<null>)
+      #scope: (Gradients/Default/Grad_Add)
+  %350(CNode_1413) = TupleAdd_tuple_add(%43, %349)
+      : (<Tuple[Object:EnvType], TupleShape(NoShape)>, <null>) -> (<null>)
+      #scope: (Default)
+  %351(CNode_1414) = TupleGetItem(%350, I64(1)) cnode_attrs: {check_complex: Bool(1)}
+      : (<null>, <null>) -> (<null>)
+      #scope: (Default)
+  %352(CNode_1415) = BpropMetaFuncGraph_BpropMetaFuncGraphLog{BpropMetaFuncGraphLog}(%38, %41, %351) cnode_primal_attrs: {forward_node_name: "Log_41955", forward_unique_id: "41955"}
+      : (<Tensor[Float32], (64, 1)>, <Tensor[Float32], (64, 1)>, <null>) -> (<null>)
+      #scope: (Gradients/Default/Grad_Log)
+  %353(CNode_1416) = TupleAdd_tuple_add(%40, %352)
+      : (<Tuple[Object:EnvType], TupleShape(NoShape)>, <null>) -> (<null>)
+      #scope: (Default)
+  %354(CNode_1417) = TupleGetItem(%353, I64(1))
+      : (<null>, <null>) -> (<null>)
+      #scope: (Default)
+  %355(CNode_1418) = TupleGetItem(%251, I64(2))
+      : (<Tuple[Object:EnvType,Tensor[Float32]*2], TupleShape(NoShape, (64, 1), (64, 1))>, <null>) -> (<null>)
+      #scope: (Bprop/gradLog)
+  %356(CNode_1419) = HyperMapPy_hyper_map[add_backward]{fn_leaf: MultitypeFuncGraph_add_backward{(Number, Number), (IOMonad, IOMonad), (EnvType, EnvType), (NoneType, NoneType), (Tensor, Tensor), (CSRTensor, CSRTensor), (UMonad, UMonad), (RowTensor, Tensor), (COOTensor, COOTensor), (CSRTensor, Tuple), (Tuple, CSRTensor), (COOTensor, Tuple), (Tuple, COOTensor), (MapTensor, MapTensor)}}(%354, %355)
+      : (<null>, <null>) -> (<null>)
+      #scope: (Gradients/Default)
+  %357(CNode_1420) = BpropMetaFuncGraph_BpropMetaFuncGraphReduceSum{BpropMetaFuncGraphReduceSum}(%35, (I64(1)), Bool(1), Bool(0), %38, %356) cnode_primal_attrs: {forward_node_name: "ReduceSum_42799", forward_unique_id: "42799"}
+      : (<Tensor[Float32], (64, 10)>, <Tuple[Int64], TupleShape(NoShape)>, <Bool, NoShape>, <Bool, NoShape>, <Tensor[Float32], (64, 1)>, <null>) -> (<null>)
+      #scope: (Gradients/Default/Grad_ReduceSum)
+  %358(CNode_1421) = TupleAdd_tuple_add(%37, %357)
+      : (<Tuple[Object:EnvType], TupleShape(NoShape)>, <null>) -> (<null>)
+      #scope: (Default)
+  %359(CNode_1422) = TupleGetItem(%358, I64(1)) cnode_attrs: {check_complex: Bool(1)}
+      : (<null>, <null>) -> (<null>)
+      #scope: (Default)
+  %360(CNode_1423) = TupleGetItem(%245, I64(2)) cnode_attrs: {check_complex: Bool(1)}
+      : (<Tuple[Object:EnvType,Tensor[Float32]*2], TupleShape(NoShape, (64, 10), (64, 10))>, <null>) -> (<null>)
+      #scope: (Bprop/gradExp)
+  %361(CNode_1424) = HyperMapPy_hyper_map[add_backward]{fn_leaf: MultitypeFuncGraph_add_backward{(Number, Number), (IOMonad, IOMonad), (EnvType, EnvType), (NoneType, NoneType), (Tensor, Tensor), (CSRTensor, CSRTensor), (UMonad, UMonad), (RowTensor, Tensor), (COOTensor, COOTensor), (CSRTensor, Tuple), (Tuple, CSRTensor), (COOTensor, Tuple), (Tuple, COOTensor), (MapTensor, MapTensor)}}(%359, %360)
+      : (<null>, <null>) -> (<null>)
+      #scope: (Gradients/Default)
+  %362(CNode_1425) = BpropMetaFuncGraph_BpropMetaFuncGraphExp{BpropMetaFuncGraphExp}(%32, %35, %361) cnode_primal_attrs: {forward_node_name: "Exp_41919", forward_unique_id: "41919"}
+      : (<Tensor[Float32], (64, 10)>, <Tensor[Float32], (64, 10)>, <null>) -> (<null>)
+      #scope: (Gradients/Default/Grad_Exp)
+  %363(CNode_1426) = TupleAdd_tuple_add(%34, %362)
+      : (<Tuple[Object:EnvType], TupleShape(NoShape)>, <null>) -> (<null>)
+      #scope: (Default)
+  %364(CNode_1427) = TupleGetItem(%363, I64(1)) cnode_attrs: {check_complex: Bool(1)}
+      : (<null>, <null>) -> (<null>)
+      #scope: (Default)
+  %365(CNode_1428) = BpropMetaFuncGraph_BpropMetaFuncGraphSub{BpropMetaFuncGraphSub}(%26, %29, %32, %364) cnode_primal_attrs: {forward_node_name: "Sub_41904", forward_unique_id: "41904"}
+      : (<Tensor[Float32], (64, 10)>, <Tensor[Float32], (64, 1)>, <Tensor[Float32], (64, 10)>, <null>) -> (<null>)
+      #scope: (Gradients/Default/Grad_Sub)
+  %366(CNode_1429) = TupleAdd_tuple_add(%31, %365)
+      : (<Tuple[Object:EnvType], TupleShape(NoShape)>, <null>) -> (<null>)
+      #scope: (Default)
+  %367(CNode_1430) = TupleGetItem(%366, I64(2)) cnode_attrs: {check_complex: Bool(1)}
+      : (<null>, <null>) -> (<null>)
+      #scope: (Default)
+  %368(CNode_1431) = TupleGetItem(%350, I64(2)) cnode_attrs: {check_complex: Bool(1)}
+      : (<null>, <null>) -> (<null>)
+      #scope: (Default)
+  %369(CNode_1432) = HyperMapPy_hyper_map[add_backward]{fn_leaf: MultitypeFuncGraph_add_backward{(Number, Number), (IOMonad, IOMonad), (EnvType, EnvType), (NoneType, NoneType), (Tensor, Tensor), (CSRTensor, CSRTensor), (UMonad, UMonad), (RowTensor, Tensor), (COOTensor, COOTensor), (CSRTensor, Tuple), (Tuple, CSRTensor), (COOTensor, Tuple), (Tuple, COOTensor), (MapTensor, MapTensor)}}(%367, %368)
+      : (<null>, <null>) -> (<null>)
+      #scope: (Gradients/Default)
+  %370(CNode_1433) = EnvironCreate()
+      #scope: (Default)
+  %371(CNode_1434) = MakeTuple(%370)
+      : (<null>) -> (<null>)
+      #scope: (Default)
+  %372(CNode_1435) = EnvironCreate()
+      #scope: (Default)
+  %373(CNode_1436) = MakeTuple(%372)
+      : (<null>) -> (<null>)
+      #scope: (Default)
+  %374(CNode_1437) = EnvironCreate()
+      #scope: (Default)
+  %375(CNode_1438) = MakeTuple(%374)
+      : (<null>) -> (<null>)
+      #scope: (Default)
+  %376(CNode_1439) = TupleGetItem(%232, I64(2)) cnode_attrs: {check_complex: Bool(1)}
+      : (<Tuple[Object:EnvType,Tensor[Float32]*2], TupleShape(NoShape, (64, 1), (64, 1))>, <null>) -> (<null>)
+      #scope: (Bprop/gradReduceMax)
+  %377(CNode_1440) = BpropMetaFuncGraph_BpropMetaFuncGraphSumExt{BpropMetaFuncGraphSumExt}(%131, (I64(1)), Bool(1), I64(43), %132, %376) cnode_primal_attrs: {forward_node_name: "SumExt_41888", forward_unique_id: "41888"}
+      : (<Tensor[Float32], (64, 10)>, <Tuple[Int64], TupleShape(NoShape)>, <Bool, NoShape>, <Int64, NoShape>, <Tensor[Float32], (64, 1)>, <null>) -> (<null>)
+      #scope: (Gradients/Default/Grad_SumExt)
+  %378(CNode_1441) = TupleAdd_tuple_add(%375, %377)
+      : (<null>, <null>) -> (<null>)
+      #scope: (Default)
+  %379(CNode_1442) = TupleGetItem(%378, I64(1)) cnode_attrs: {check_complex: Bool(1)}
+      : (<null>, <null>) -> (<null>)
+      #scope: (Bprop/gradReduceMax)
+  %380(CNode_1443) = TupleGetItem(%229, I64(2)) cnode_attrs: {check_complex: Bool(1)}
+      : (<Tuple[Object:EnvType,Tensor[Float32]*2], TupleShape(NoShape, (64, 1), (64, 10))>, <null>) -> (<null>)
+      #scope: (Bprop/gradReduceMax)
+  %381(CNode_1444) = HyperMapPy_hyper_map[add_backward]{fn_leaf: MultitypeFuncGraph_add_backward{(Number, Number), (IOMonad, IOMonad), (EnvType, EnvType), (NoneType, NoneType), (Tensor, Tensor), (CSRTensor, CSRTensor), (UMonad, UMonad), (RowTensor, Tensor), (COOTensor, COOTensor), (CSRTensor, Tuple), (Tuple, CSRTensor), (COOTensor, Tuple), (Tuple, COOTensor), (MapTensor, MapTensor)}}(%379, %380)
+      : (<null>, <null>) -> (<null>)
+      #scope: (Gradients/Bprop/gradReduceMax)
+  %382(CNode_1445) = BpropMetaFuncGraph_BpropMetaFuncGraphCast{BpropMetaFuncGraphCast}(%130, I64(43), %131, %381) cnode_primal_attrs: {forward_node_name: "Cast_41884", forward_unique_id: "41884"}
+      : (<Tensor[Bool], (64, 10)>, <Int64, NoShape>, <Tensor[Float32], (64, 10)>, <null>) -> (<null>)
+      #scope: (Gradients/Default/Grad_Cast)
+  %383(CNode_1446) = TupleAdd_tuple_add(%373, %382)
+      : (<null>, <null>) -> (<null>)
+      #scope: (Default)
+  %384(CNode_1447) = TupleGetItem(%383, I64(1)) cnode_attrs: {check_complex: Bool(1)}
+      : (<null>, <null>) -> (<null>)
+      #scope: (Bprop/gradReduceMax)
+  %385(CNode_1448) = BpropMetaFuncGraph_BpropMetaFuncGraphEqual{BpropMetaFuncGraphEqual}(%29, %26, %130, %384) cnode_primal_attrs: {forward_node_name: "Equal_41881", forward_unique_id: "41881"}
+      : (<Tensor[Float32], (64, 1)>, <Tensor[Float32], (64, 10)>, <Tensor[Bool], (64, 10)>, <null>) -> (<null>)
+      #scope: (Gradients/Default/Grad_Equal)
+  %386(CNode_1449) = TupleAdd_tuple_add(%371, %385)
+      : (<null>, <null>) -> (<null>)
+      #scope: (Default)
+  %387(CNode_1450) = TupleGetItem(%386, I64(1)) cnode_attrs: {check_complex: Bool(1)}
+      : (<null>, <null>) -> (<null>)
+      #scope: (Bprop/gradReduceMax)
+  %388(CNode_1451) = HyperMapPy_hyper_map[add_backward]{fn_leaf: MultitypeFuncGraph_add_backward{(Number, Number), (IOMonad, IOMonad), (EnvType, EnvType), (NoneType, NoneType), (Tensor, Tensor), (CSRTensor, CSRTensor), (UMonad, UMonad), (RowTensor, Tensor), (COOTensor, COOTensor), (CSRTensor, Tuple), (Tuple, CSRTensor), (COOTensor, Tuple), (Tuple, COOTensor), (MapTensor, MapTensor)}}(%369, %387)
+      : (<null>, <null>) -> (<null>)
+      #scope: (Gradients/Default)
+  %389(CNode_1452) = BpropMetaFuncGraph_BpropMetaFuncGraphReduceMax{BpropMetaFuncGraphReduceMax}(%26, (I64(1)), Bool(1), %29, %388) cnode_primal_attrs: {forward_node_name: "ReduceMax_41874", forward_unique_id: "41874"}
+      : (<Tensor[Float32], (64, 10)>, <Tuple[Int64], TupleShape(NoShape)>, <Bool, NoShape>, <Tensor[Float32], (64, 1)>, <null>) -> (<null>)
+      #scope: (Gradients/Default/Grad_ReduceMax)
+  %390(CNode_1453) = TupleAdd_tuple_add(%28, %389)
+      : (<Tuple[Object:EnvType], TupleShape(NoShape)>, <null>) -> (<null>)
+      #scope: (Default)
+  %391(CNode_1454) = TupleGetItem(%390, I64(1))
+      : (<null>, <null>) -> (<null>)
+      #scope: (Default)
+  %392(CNode_1455) = TupleGetItem(%366, I64(1))
+      : (<null>, <null>) -> (<null>)
+      #scope: (Default)
+  %393(CNode_1456) = HyperMapPy_hyper_map[add_backward]{fn_leaf: MultitypeFuncGraph_add_backward{(Number, Number), (IOMonad, IOMonad), (EnvType, EnvType), (NoneType, NoneType), (Tensor, Tensor), (CSRTensor, CSRTensor), (UMonad, UMonad), (RowTensor, Tensor), (COOTensor, COOTensor), (CSRTensor, Tuple), (Tuple, CSRTensor), (COOTensor, Tuple), (Tuple, COOTensor), (MapTensor, MapTensor)}}(%391, %392)
+      : (<null>, <null>) -> (<null>)
+      #scope: (Gradients/Default)
+  %394(CNode_1457) = TupleGetItem(%347, I64(1))
+      : (<null>, <null>) -> (<null>)
+      #scope: (Default)
+  %395(CNode_1458) = HyperMapPy_hyper_map[add_backward]{fn_leaf: MultitypeFuncGraph_add_backward{(Number, Number), (IOMonad, IOMonad), (EnvType, EnvType), (NoneType, NoneType), (Tensor, Tensor), (CSRTensor, CSRTensor), (UMonad, UMonad), (RowTensor, Tensor), (COOTensor, COOTensor), (CSRTensor, Tuple), (Tuple, CSRTensor), (COOTensor, Tuple), (Tuple, COOTensor), (MapTensor, MapTensor)}}(%393, %394)
+      : (<null>, <null>) -> (<null>)
+      #scope: (Gradients/Default)
+  %396(CNode_1459) = TupleGetItem(%386, I64(2))
+      : (<null>, <null>) -> (<null>)
+      #scope: (Bprop/gradReduceMax)
+  %397(CNode_1460) = HyperMapPy_hyper_map[add_backward]{fn_leaf: MultitypeFuncGraph_add_backward{(Number, Number), (IOMonad, IOMonad), (EnvType, EnvType), (NoneType, NoneType), (Tensor, Tensor), (CSRTensor, CSRTensor), (UMonad, UMonad), (RowTensor, Tensor), (COOTensor, COOTensor), (CSRTensor, Tuple), (Tuple, CSRTensor), (COOTensor, Tuple), (Tuple, COOTensor), (MapTensor, MapTensor)}}(%395, %396)
+      : (<null>, <null>) -> (<null>)
+      #scope: (Gradients/Default)
+  %398(CNode_1461) = BpropMetaFuncGraph_BpropMetaFuncGraphBiasAdd{BpropMetaFuncGraphBiasAdd}(%23, %para8_Parameter_1056, I64(0), %26, %397) cnode_primal_attrs: {forward_node_name: "BiasAdd_42797", forward_unique_id: "42797"}
+      : (<Tensor[Float32], (64, 10)>, <Ref[Tensor[Float32]], (10)>, <Int64, NoShape>, <Tensor[Float32], (64, 10)>, <null>) -> (<null>)
+      #scope: (Gradients/Default/Grad_BiasAdd)
+  %399(CNode_1462) = TupleAdd_tuple_add(%25, %398)
+      : (<Tuple[Object:EnvType], TupleShape(NoShape)>, <null>) -> (<null>)
+      #scope: (Default)
+  %400(CNode_1463) = TupleGetItem(%399, I64(1)) cnode_attrs: {check_complex: Bool(1)}
+      : (<null>, <null>) -> (<null>)
+      #scope: (Default)
+  %401(CNode_1464) = BpropMetaFuncGraph_BpropMetaFuncGraphMatMul{BpropMetaFuncGraphMatMul}(%20, %para7_Parameter_1055, Bool(0), Bool(1), %23, %400) cnode_primal_attrs: {forward_node_name: "MatMul_41832", forward_unique_id: "41832"}
+      : (<Tensor[Float32], (64, 512)>, <Ref[Tensor[Float32]], (10, 512)>, <Bool, NoShape>, <Bool, NoShape>, <Tensor[Float32], (64, 10)>, <null>) -> (<null>)
+      #scope: (Gradients/Default/Grad_MatMul)
+  %402(CNode_1465) = TupleAdd_tuple_add(%22, %401)
+      : (<Tuple[Object:EnvType], TupleShape(NoShape)>, <null>) -> (<null>)
+      #scope: (Default)
+  %403(CNode_1466) = TupleGetItem(%402, I64(1)) cnode_attrs: {check_complex: Bool(1)}
+      : (<null>, <null>) -> (<null>)
+      #scope: (Default)
+  %404(CNode_1467) = TupleGetItem(%192, I64(2)) cnode_attrs: {check_complex: Bool(1)}
+      : (<Tuple[Object:EnvType,Tensor[Float32]*2], TupleShape(NoShape, (64, 512), (64, 512))>, <null>) -> (<null>)
+      #scope: (Bprop/gradReLU)
+  %405(CNode_1468) = HyperMapPy_hyper_map[add_backward]{fn_leaf: MultitypeFuncGraph_add_backward{(Number, Number), (IOMonad, IOMonad), (EnvType, EnvType), (NoneType, NoneType), (Tensor, Tensor), (CSRTensor, CSRTensor), (UMonad, UMonad), (RowTensor, Tensor), (COOTensor, COOTensor), (CSRTensor, Tuple), (Tuple, CSRTensor), (COOTensor, Tuple), (Tuple, COOTensor), (MapTensor, MapTensor)}}(%403, %404)
+      : (<null>, <null>) -> (<null>)
+      #scope: (Gradients/Default)
+  %406(CNode_1469) = TupleGetItem(%201, I64(2)) cnode_attrs: {check_complex: Bool(1)}
+      : (<Tuple[Object:EnvType,Tensor[Float32]*2,Bool*2], TupleShape(NoShape, (64, 10), (64, 512), NoShape, NoShape)>, <null>) -> (<null>)
+      #scope: (Bprop/gradMatMul)
+  %407(CNode_1470) = HyperMapPy_hyper_map[add_backward]{fn_leaf: MultitypeFuncGraph_add_backward{(Number, Number), (IOMonad, IOMonad), (EnvType, EnvType), (NoneType, NoneType), (Tensor, Tensor), (CSRTensor, CSRTensor), (UMonad, UMonad), (RowTensor, Tensor), (COOTensor, COOTensor), (CSRTensor, Tuple), (Tuple, CSRTensor), (COOTensor, Tuple), (Tuple, COOTensor), (MapTensor, MapTensor)}}(%405, %406)
+      : (<null>, <null>) -> (<null>)
+      #scope: (Gradients/Default)
+  %408(CNode_1471) = BpropMetaFuncGraph_BpropMetaFuncGraphReLU{BpropMetaFuncGraphReLU}(%17, %20, %407) cnode_primal_attrs: {forward_node_name: "ReLU_41816", forward_unique_id: "41816"}
+      : (<Tensor[Float32], (64, 512)>, <Tensor[Float32], (64, 512)>, <null>) -> (<null>)
+      #scope: (Gradients/Default/Grad_ReLU)
+  %409(CNode_1472) = TupleAdd_tuple_add(%19, %408)
+      : (<Tuple[Object:EnvType], TupleShape(NoShape)>, <null>) -> (<null>)
+      #scope: (Default)
+  %410(CNode_1473) = TupleGetItem(%409, I64(1))
+      : (<null>, <null>) -> (<null>)
+      #scope: (Default)
+  %411(CNode_1474) = BpropMetaFuncGraph_BpropMetaFuncGraphBiasAdd{BpropMetaFuncGraphBiasAdd}(%14, %para6_Parameter_1054, I64(0), %17, %410) cnode_primal_attrs: {forward_node_name: "BiasAdd_42795", forward_unique_id: "42795"}
+      : (<Tensor[Float32], (64, 512)>, <Ref[Tensor[Float32]], (512)>, <Int64, NoShape>, <Tensor[Float32], (64, 512)>, <null>) -> (<null>)
+      #scope: (Gradients/Default/Grad_BiasAdd)
+  %412(CNode_1475) = TupleAdd_tuple_add(%16, %411)
+      : (<Tuple[Object:EnvType], TupleShape(NoShape)>, <null>) -> (<null>)
+      #scope: (Default)
+  %413(CNode_1476) = TupleGetItem(%412, I64(1)) cnode_attrs: {check_complex: Bool(1)}
+      : (<null>, <null>) -> (<null>)
+      #scope: (Default)
+  %414(CNode_1477) = BpropMetaFuncGraph_BpropMetaFuncGraphMatMul{BpropMetaFuncGraphMatMul}(%11, %para5_Parameter_1053, Bool(0), Bool(1), %14, %413) cnode_primal_attrs: {forward_node_name: "MatMul_41776", forward_unique_id: "41776"}
+      : (<Tensor[Float32], (64, 512)>, <Ref[Tensor[Float32]], (512, 512)>, <Bool, NoShape>, <Bool, NoShape>, <Tensor[Float32], (64, 512)>, <null>) -> (<null>)
+      #scope: (Gradients/Default/Grad_MatMul)
+  %415(CNode_1478) = TupleAdd_tuple_add(%13, %414)
+      : (<Tuple[Object:EnvType], TupleShape(NoShape)>, <null>) -> (<null>)
+      #scope: (Default)
+  %416(CNode_1479) = TupleGetItem(%415, I64(1)) cnode_attrs: {check_complex: Bool(1)}
+      : (<null>, <null>) -> (<null>)
+      #scope: (Default)
+  %417(CNode_1480) = TupleGetItem(%172, I64(2)) cnode_attrs: {check_complex: Bool(1)}
+      : (<Tuple[Object:EnvType,Tensor[Float32]*2], TupleShape(NoShape, (64, 512), (64, 512))>, <null>) -> (<null>)
+      #scope: (Bprop/gradReLU)
+  %418(CNode_1481) = HyperMapPy_hyper_map[add_backward]{fn_leaf: MultitypeFuncGraph_add_backward{(Number, Number), (IOMonad, IOMonad), (EnvType, EnvType), (NoneType, NoneType), (Tensor, Tensor), (CSRTensor, CSRTensor), (UMonad, UMonad), (RowTensor, Tensor), (COOTensor, COOTensor), (CSRTensor, Tuple), (Tuple, CSRTensor), (COOTensor, Tuple), (Tuple, COOTensor), (MapTensor, MapTensor)}}(%416, %417)
+      : (<null>, <null>) -> (<null>)
+      #scope: (Gradients/Default)
+  %419(CNode_1482) = TupleGetItem(%181, I64(2)) cnode_attrs: {check_complex: Bool(1)}
+      : (<Tuple[Object:EnvType,Tensor[Float32]*2,Bool*2], TupleShape(NoShape, (64, 512), (64, 512), NoShape, NoShape)>, <null>) -> (<null>)
+      #scope: (Bprop/gradMatMul)
+  %420(CNode_1483) = HyperMapPy_hyper_map[add_backward]{fn_leaf: MultitypeFuncGraph_add_backward{(Number, Number), (IOMonad, IOMonad), (EnvType, EnvType), (NoneType, NoneType), (Tensor, Tensor), (CSRTensor, CSRTensor), (UMonad, UMonad), (RowTensor, Tensor), (COOTensor, COOTensor), (CSRTensor, Tuple), (Tuple, CSRTensor), (COOTensor, Tuple), (Tuple, COOTensor), (MapTensor, MapTensor)}}(%418, %419)
+      : (<null>, <null>) -> (<null>)
+      #scope: (Gradients/Default)
+  %421(CNode_1484) = BpropMetaFuncGraph_BpropMetaFuncGraphReLU{BpropMetaFuncGraphReLU}(%8, %11, %420) cnode_primal_attrs: {forward_node_name: "ReLU_41760", forward_unique_id: "41760"}
+      : (<Tensor[Float32], (64, 512)>, <Tensor[Float32], (64, 512)>, <null>) -> (<null>)
+      #scope: (Gradients/Default/Grad_ReLU)
+  %422(CNode_1485) = TupleAdd_tuple_add(%10, %421)
+      : (<Tuple[Object:EnvType], TupleShape(NoShape)>, <null>) -> (<null>)
+      #scope: (Default)
+  %423(CNode_1486) = TupleGetItem(%422, I64(1))
+      : (<null>, <null>) -> (<null>)
+      #scope: (Default)
+  %424(CNode_1487) = BpropMetaFuncGraph_BpropMetaFuncGraphBiasAdd{BpropMetaFuncGraphBiasAdd}(%5, %para4_Parameter_1052, I64(0), %8, %423) cnode_primal_attrs: {forward_node_name: "BiasAdd_42793", forward_unique_id: "42793"}
+      : (<Tensor[Float32], (64, 512)>, <Ref[Tensor[Float32]], (512)>, <Int64, NoShape>, <Tensor[Float32], (64, 512)>, <null>) -> (<null>)
+      #scope: (Gradients/Default/Grad_BiasAdd)
+  %425(CNode_1488) = TupleAdd_tuple_add(%7, %424)
+      : (<Tuple[Object:EnvType], TupleShape(NoShape)>, <null>) -> (<null>)
+      #scope: (Default)
+  %426(CNode_1489) = TupleGetItem(%425, I64(1)) cnode_attrs: {check_complex: Bool(1)}
+      : (<null>, <null>) -> (<null>)
+      #scope: (Default)
+  %427(CNode_1490) = BpropMetaFuncGraph_BpropMetaFuncGraphMatMul{BpropMetaFuncGraphMatMul}(%2, %para3_Parameter_1051, Bool(0), Bool(1), %5, %426) cnode_primal_attrs: {forward_node_name: "MatMul_41720", forward_unique_id: "41720"}
+      : (<Tensor[Float32], (64, 784)>, <Ref[Tensor[Float32]], (512, 784)>, <Bool, NoShape>, <Bool, NoShape>, <Tensor[Float32], (64, 512)>, <null>) -> (<null>)
+      #scope: (Gradients/Default/Grad_MatMul)
+  %428(CNode_1491) = TupleAdd_tuple_add(%4, %427)
+      : (<Tuple[Object:EnvType], TupleShape(NoShape)>, <null>) -> (<null>)
+      #scope: (Default)
+  %429(CNode_1492) = TupleGetItem(%428, I64(1))
+      : (<null>, <null>) -> (<null>)
+      #scope: (Default)
+  %430(CNode_1493) = TupleGetItem(%162, I64(2))
+      : (<Tuple[Object:EnvType,Tensor[Float32]*2,Bool*2], TupleShape(NoShape, (64, 512), (64, 784), NoShape, NoShape)>, <null>) -> (<null>)
+      #scope: (Bprop/gradMatMul)
+  %431(CNode_1494) = HyperMapPy_hyper_map[add_backward]{fn_leaf: MultitypeFuncGraph_add_backward{(Number, Number), (IOMonad, IOMonad), (EnvType, EnvType), (NoneType, NoneType), (Tensor, Tensor), (CSRTensor, CSRTensor), (UMonad, UMonad), (RowTensor, Tensor), (COOTensor, COOTensor), (CSRTensor, Tuple), (Tuple, CSRTensor), (COOTensor, Tuple), (Tuple, COOTensor), (MapTensor, MapTensor)}}(%429, %430)
+      : (<null>, <null>) -> (<null>)
+      #scope: (Gradients/Default)
+  %432(CNode_1495) = BpropMetaFuncGraph_BpropMetaFuncGraphFlatten{BpropMetaFuncGraphFlatten}(%para1_Parameter_1049, %2, %431) cnode_primal_attrs: {forward_node_name: "Flatten_42791", forward_unique_id: "42791"}
+      : (<Tensor[Float32], (64, 1, 28, 28)>, <Tensor[Float32], (64, 784)>, <null>) -> (<null>)
+      #scope: (Gradients/Default/Grad_Flatten)
+  %433(CNode_1496) = TupleAdd_tuple_add(%1, %432)
+      : (<Tuple[Object:EnvType], TupleShape(NoShape)>, <null>) -> (<null>)
+      #scope: (Default)
+  %434(CNode_1497) = TupleGetItem(%433, I64(1)) cnode_attrs: {check_complex: Bool(1)}
+      : (<null>, <null>) -> (<null>)
+      #scope: (Default)
+  %435(CNode_1498) = EnvironCreate()
+      #scope: (Default)
+  %436(CNode_1499) = MakeTuple(%435)
+      : (<null>) -> (<null>)
+      #scope: (Default)
+  %437(CNode_1500) = EnvironCreate()
+      #scope: (Default)
+  %438(CNode_1501) = MakeTuple(%437)
+      : (<null>) -> (<null>)
+      #scope: (Default)
+  %439(CNode_1502) = EnvironCreate()
+      #scope: (Default)
+  %440(CNode_1503) = MakeTuple(%439)
+      : (<null>) -> (<null>)
+      #scope: (Default)
+  %441(CNode_1504) = TupleGetItem(%342, I64(3)) cnode_attrs: {check_complex: Bool(1)}
+      : (<null>, <null>) -> (<null>)
+      #scope: (Default)
+  %442(CNode_1505) = TupleGetItem(%308, I64(3)) cnode_attrs: {check_complex: Bool(1)}
+      : (<null>, <null>) -> (<null>)
+      #scope: (Bprop/gradGatherD)
+  %443(CNode_1506) = HyperMapPy_hyper_map[add_backward]{fn_leaf: MultitypeFuncGraph_add_backward{(Number, Number), (IOMonad, IOMonad), (EnvType, EnvType), (NoneType, NoneType), (Tensor, Tensor), (CSRTensor, CSRTensor), (UMonad, UMonad), (RowTensor, Tensor), (COOTensor, COOTensor), (CSRTensor, Tuple), (Tuple, CSRTensor), (COOTensor, Tuple), (Tuple, COOTensor), (MapTensor, MapTensor)}}(%441, %442)
+      : (<null>, <null>) -> (<null>)
+      #scope: (Gradients/Default)
+  %444(CNode_1507) = BpropMetaFuncGraph_BpropMetaFuncGraphMaskedFill{BpropMetaFuncGraphMaskedFill}(%51, %53, Tensor(shape=[], dtype=Int32, value=0), %54, %443) cnode_primal_attrs: {forward_node_name: "MaskedFill_42034", forward_unique_id: "42034"}
+      : (<Tensor[Int32], (64, 1)>, <Tensor[Bool], (64, 1)>, <Tensor[Int32], ()>, <Tensor[Int32], (64, 1)>, <null>) -> (<null>)
+      #scope: (Gradients/Default/Grad_MaskedFill)
+  %445(CNode_1508) = TupleAdd_tuple_add(%440, %444)
+      : (<null>, <null>) -> (<null>)
+      #scope: (Default)
+  %446(CNode_1509) = TupleGetItem(%445, I64(1)) cnode_attrs: {check_complex: Bool(1)}
+      : (<null>, <null>) -> (<null>)
+      #scope: (Default)
+  %447(CNode_1510) = BpropMetaFuncGraph_BpropMetaFuncGraphContiguous{BpropMetaFuncGraphContiguous}(%50, %51, %446) cnode_primal_attrs: {forward_node_name: "Contiguous_42025", forward_unique_id: "42025"}
+      : (<Tensor[Int32], (64, 1)>, <Tensor[Int32], (64, 1)>, <null>) -> (<null>)
+      #scope: (Gradients/Default/Grad_Contiguous)
+  %448(CNode_1511) = TupleAdd_tuple_add(%438, %447)
+      : (<null>, <null>) -> (<null>)
+      #scope: (Default)
+  %449(CNode_1512) = TupleGetItem(%448, I64(1)) cnode_attrs: {check_complex: Bool(1)}
+      : (<null>, <null>) -> (<null>)
+      #scope: (Default)
+  %450(CNode_1513) = EnvironCreate()
+      #scope: (Default)
+  %451(CNode_1514) = MakeTuple(%450)
+      : (<null>) -> (<null>)
+      #scope: (Default)
+  %452(CNode_1515) = EnvironCreate()
+      #scope: (Default)
+  %453(CNode_1516) = MakeTuple(%452)
+      : (<null>) -> (<null>)
+      #scope: (Default)
+  %454(CNode_1517) = TupleGetItem(%445, I64(2)) cnode_attrs: {check_complex: Bool(1)}
+      : (<null>, <null>) -> (<null>)
+      #scope: (Default)
+  %455(CNode_1518) = TupleGetItem(%333, I64(2)) cnode_attrs: {check_complex: Bool(1)}
+      : (<null>, <null>) -> (<null>)
+      #scope: (Default)
+  %456(CNode_1519) = HyperMapPy_hyper_map[add_backward]{fn_leaf: MultitypeFuncGraph_add_backward{(Number, Number), (IOMonad, IOMonad), (EnvType, EnvType), (NoneType, NoneType), (Tensor, Tensor), (CSRTensor, CSRTensor), (UMonad, UMonad), (RowTensor, Tensor), (COOTensor, COOTensor), (CSRTensor, Tuple), (Tuple, CSRTensor), (COOTensor, Tuple), (Tuple, COOTensor), (MapTensor, MapTensor)}}(%454, %455)
+      : (<null>, <null>) -> (<null>)
+      #scope: (Gradients/Default)
+  %457(CNode_1520) = EnvironCreate()
+      #scope: (Default)
+  %458(CNode_1521) = MakeTuple(%457)
+      : (<null>) -> (<null>)
+      #scope: (Default)
+  %459(CNode_1522) = EnvironCreate()
+      #scope: (Default)
+  %460(CNode_1523) = MakeTuple(%459)
+      : (<null>) -> (<null>)
+      #scope: (Default)
+  %461(CNode_1524) = TupleGetItem(%273, I64(2)) cnode_attrs: {check_complex: Bool(1)}
+      : (<Tuple[Object:EnvType,Tensor[Float32]*2], TupleShape(NoShape, (64, 1), (64, 1))>, <null>) -> (<null>)
+      #scope: (Bprop/gradMaskedFill)
+  %462(CNode_1525) = BpropMetaFuncGraph_BpropMetaFuncGraphSub{BpropMetaFuncGraphSub}(Tensor(shape=[], dtype=Float32, value=1), %84, %85, %461) cnode_primal_attrs: {forward_node_name: "Sub_42208", forward_unique_id: "42208"}
+      : (<Tensor[Float32], ()>, <Tensor[Float32], (64, 1)>, <Tensor[Float32], (64, 1)>, <null>) -> (<null>)
+      #scope: (Gradients/Default/Grad_Sub)
+  %463(CNode_1526) = TupleAdd_tuple_add(%460, %462)
+      : (<null>, <null>) -> (<null>)
+      #scope: (Default)
+  %464(CNode_1527) = TupleGetItem(%463, I64(2)) cnode_attrs: {check_complex: Bool(1)}
+      : (<null>, <null>) -> (<null>)
+      #scope: (Bprop/gradMaskedFill)
+  %465(CNode_1528) = BpropMetaFuncGraph_BpropMetaFuncGraphCast{BpropMetaFuncGraphCast}(%53, I64(43), %84, %464) cnode_primal_attrs: {forward_node_name: "Cast_42205", forward_unique_id: "42205"}
+      : (<Tensor[Bool], (64, 1)>, <Int64, NoShape>, <Tensor[Float32], (64, 1)>, <null>) -> (<null>)
+      #scope: (Gradients/Default/Grad_Cast)
+  %466(CNode_1529) = TupleAdd_tuple_add(%458, %465)
+      : (<null>, <null>) -> (<null>)
+      #scope: (Default)
+  %467(CNode_1530) = TupleGetItem(%466, I64(1)) cnode_attrs: {check_complex: Bool(1)}
+      : (<null>, <null>) -> (<null>)
+      #scope: (Bprop/gradMaskedFill)
+  %468(CNode_1531) = HyperMapPy_hyper_map[add_backward]{fn_leaf: MultitypeFuncGraph_add_backward{(Number, Number), (IOMonad, IOMonad), (EnvType, EnvType), (NoneType, NoneType), (Tensor, Tensor), (CSRTensor, CSRTensor), (UMonad, UMonad), (RowTensor, Tensor), (COOTensor, COOTensor), (CSRTensor, Tuple), (Tuple, CSRTensor), (COOTensor, Tuple), (Tuple, COOTensor), (MapTensor, MapTensor)}}(%456, %467)
+      : (<null>, <null>) -> (<null>)
+      #scope: (Gradients/Default)
+  %469(CNode_1532) = EnvironCreate()
+      #scope: (Default)
+  %470(CNode_1533) = MakeTuple(%469)
+      : (<null>) -> (<null>)
+      #scope: (Default)
+  %471(CNode_1534) = EnvironCreate()
+      #scope: (Default)
+  %472(CNode_1535) = MakeTuple(%471)
+      : (<null>) -> (<null>)
+      #scope: (Default)
+  %473(CNode_1536) = TupleGetItem(%314, I64(2)) cnode_attrs: {check_complex: Bool(1)}
+      : (<null>, <null>) -> (<null>)
+      #scope: (Bprop/gradMaskedFill)
+  %474(CNode_1537) = BpropMetaFuncGraph_BpropMetaFuncGraphSub{BpropMetaFuncGraphSub}(Tensor(shape=[], dtype=Float32, value=1), %101, %102, %473) cnode_primal_attrs: {forward_node_name: "Sub_42154", forward_unique_id: "42154"}
+      : (<Tensor[Float32], ()>, <Tensor[Float32], (64, 1)>, <Tensor[Float32], (64, 1)>, <null>) -> (<null>)
+      #scope: (Gradients/Default/Grad_Sub)
+  %475(CNode_1538) = TupleAdd_tuple_add(%472, %474)
+      : (<null>, <null>) -> (<null>)
+      #scope: (Default)
+  %476(CNode_1539) = TupleGetItem(%475, I64(2)) cnode_attrs: {check_complex: Bool(1)}
+      : (<null>, <null>) -> (<null>)
+      #scope: (Bprop/gradMaskedFill)
+  %477(CNode_1540) = BpropMetaFuncGraph_BpropMetaFuncGraphCast{BpropMetaFuncGraphCast}(%53, I64(43), %101, %476) cnode_primal_attrs: {forward_node_name: "Cast_42151", forward_unique_id: "42151"}
+      : (<Tensor[Bool], (64, 1)>, <Int64, NoShape>, <Tensor[Float32], (64, 1)>, <null>) -> (<null>)
+      #scope: (Gradients/Default/Grad_Cast)
+  %478(CNode_1541) = TupleAdd_tuple_add(%470, %477)
+      : (<null>, <null>) -> (<null>)
+      #scope: (Default)
+  %479(CNode_1542) = TupleGetItem(%478, I64(1)) cnode_attrs: {check_complex: Bool(1)}
+      : (<null>, <null>) -> (<null>)
+      #scope: (Bprop/gradMaskedFill)
+  %480(CNode_1543) = HyperMapPy_hyper_map[add_backward]{fn_leaf: MultitypeFuncGraph_add_backward{(Number, Number), (IOMonad, IOMonad), (EnvType, EnvType), (NoneType, NoneType), (Tensor, Tensor), (CSRTensor, CSRTensor), (UMonad, UMonad), (RowTensor, Tensor), (COOTensor, COOTensor), (CSRTensor, Tuple), (Tuple, CSRTensor), (COOTensor, Tuple), (Tuple, COOTensor), (MapTensor, MapTensor)}}(%468, %479)
+      : (<null>, <null>) -> (<null>)
+      #scope: (Gradients/Default)
+  %481(CNode_1544) = BpropMetaFuncGraph_BpropMetaFuncGraphEqual{BpropMetaFuncGraphEqual}(%52, Tensor(shape=[], dtype=Int32, value=-100), %53, %480) cnode_primal_attrs: {forward_node_name: "Equal_42012", forward_unique_id: "42012"}
+      : (<Tensor[Int32], (64, 1)>, <Tensor[Int32], ()>, <Tensor[Bool], (64, 1)>, <null>) -> (<null>)
+      #scope: (Gradients/Default/Grad_Equal)
+  %482(CNode_1545) = TupleAdd_tuple_add(%453, %481)
+      : (<null>, <null>) -> (<null>)
+      #scope: (Default)
+  %483(CNode_1546) = TupleGetItem(%482, I64(1)) cnode_attrs: {check_complex: Bool(1)}
+      : (<null>, <null>) -> (<null>)
+      #scope: (Default)
+  %484(CNode_1547) = BpropMetaFuncGraph_BpropMetaFuncGraphContiguous{BpropMetaFuncGraphContiguous}(%50, %52, %483) cnode_primal_attrs: {forward_node_name: "Contiguous_42003", forward_unique_id: "42003"}
+      : (<Tensor[Int32], (64, 1)>, <Tensor[Int32], (64, 1)>, <null>) -> (<null>)
+      #scope: (Gradients/Default/Grad_Contiguous)
+  %485(CNode_1548) = TupleAdd_tuple_add(%451, %484)
+      : (<null>, <null>) -> (<null>)
+      #scope: (Default)
+  %486(CNode_1549) = TupleGetItem(%485, I64(1)) cnode_attrs: {check_complex: Bool(1)}
+      : (<null>, <null>) -> (<null>)
+      #scope: (Default)
+  %487(CNode_1550) = HyperMapPy_hyper_map[add_backward]{fn_leaf: MultitypeFuncGraph_add_backward{(Number, Number), (IOMonad, IOMonad), (EnvType, EnvType), (NoneType, NoneType), (Tensor, Tensor), (CSRTensor, CSRTensor), (UMonad, UMonad), (RowTensor, Tensor), (COOTensor, COOTensor), (CSRTensor, Tuple), (Tuple, CSRTensor), (COOTensor, Tuple), (Tuple, COOTensor), (MapTensor, MapTensor)}}(%449, %486)
+      : (<null>, <null>) -> (<null>)
+      #scope: (Gradients/Default)
+  %488(CNode_1551) = BpropMetaFuncGraph_BpropMetaFuncGraphExpandDims{BpropMetaFuncGraphExpandDims}(%para2_Parameter_1050, I64(-1), %50, %487) cnode_primal_attrs: {forward_node_name: "ExpandDims_41989", forward_unique_id: "41989"}
+      : (<Tensor[Int32], (64)>, <Int64, NoShape>, <Tensor[Int32], (64, 1)>, <null>) -> (<null>)
+      #scope: (Gradients/Default/Grad_ExpandDims)
+  %489(CNode_1552) = TupleAdd_tuple_add(%436, %488)
+      : (<null>, <null>) -> (<null>)
+      #scope: (Default)
+  %490(CNode_1553) = TupleGetItem(%489, I64(1)) cnode_attrs: {check_complex: Bool(1)}
+      : (<null>, <null>) -> (<null>)
+      #scope: (Default)
+  %491(CNode_1554) = TupleGetItem(%428, I64(2)) cnode_attrs: {check_complex: Bool(1)}
+      : (<null>, <null>) -> (<null>)
+      #scope: (Default)
+  %492(CNode_1555) = TupleGetItem(%425, I64(2)) cnode_attrs: {check_complex: Bool(1)}
+      : (<null>, <null>) -> (<null>)
+      #scope: (Default)
+  %493(CNode_1556) = TupleGetItem(%415, I64(2)) cnode_attrs: {check_complex: Bool(1)}
+      : (<null>, <null>) -> (<null>)
+      #scope: (Default)
+  %494(CNode_1557) = TupleGetItem(%175, I64(2)) cnode_attrs: {check_complex: Bool(1)}
+      : (<Tuple[Object:EnvType,Tensor[Float32]*2,Bool*2], TupleShape(NoShape, (64, 512), (512, 512), NoShape, NoShape)>, <null>) -> (<null>)
+      #scope: (Bprop/gradMatMul)
+  %495(CNode_1558) = HyperMapPy_hyper_map[add_backward]{fn_leaf: MultitypeFuncGraph_add_backward{(Number, Number), (IOMonad, IOMonad), (EnvType, EnvType), (NoneType, NoneType), (Tensor, Tensor), (CSRTensor, CSRTensor), (UMonad, UMonad), (RowTensor, Tensor), (COOTensor, COOTensor), (CSRTensor, Tuple), (Tuple, CSRTensor), (COOTensor, Tuple), (Tuple, COOTensor), (MapTensor, MapTensor)}}(%493, %494)
+      : (<null>, <null>) -> (<null>)
+      #scope: (Gradients/Default)
+  %496(CNode_1559) = TupleGetItem(%412, I64(2)) cnode_attrs: {check_complex: Bool(1)}
+      : (<null>, <null>) -> (<null>)
+      #scope: (Default)
+  %497(CNode_1560) = TupleGetItem(%402, I64(2)) cnode_attrs: {check_complex: Bool(1)}
+      : (<null>, <null>) -> (<null>)
+      #scope: (Default)
+  %498(CNode_1561) = TupleGetItem(%195, I64(2)) cnode_attrs: {check_complex: Bool(1)}
+      : (<Tuple[Object:EnvType,Tensor[Float32]*2,Bool*2], TupleShape(NoShape, (64, 10), (10, 512), NoShape, NoShape)>, <null>) -> (<null>)
+      #scope: (Bprop/gradMatMul)
+  %499(CNode_1562) = HyperMapPy_hyper_map[add_backward]{fn_leaf: MultitypeFuncGraph_add_backward{(Number, Number), (IOMonad, IOMonad), (EnvType, EnvType), (NoneType, NoneType), (Tensor, Tensor), (CSRTensor, CSRTensor), (UMonad, UMonad), (RowTensor, Tensor), (COOTensor, COOTensor), (CSRTensor, Tuple), (Tuple, CSRTensor), (COOTensor, Tuple), (Tuple, COOTensor), (MapTensor, MapTensor)}}(%497, %498)
+      : (<null>, <null>) -> (<null>)
+      #scope: (Gradients/Default)
+  %500(CNode_1563) = TupleGetItem(%399, I64(2)) cnode_attrs: {check_complex: Bool(1)}
+      : (<null>, <null>) -> (<null>)
+      #scope: (Default)
+  %501(CNode_1564) = MakeTuple(%434, %490, %491, %492, %495, %496, %499, %500)
+      : (<null>, <null>, <null>, <null>, <null>, <null>, <null>, <null>) -> (<null>)
+      #scope: (Default)
+  Return(%501)
+      : (<null>)
+      #scope: (Default)
+}
+# Order:
+#   1: @bprop_builder_1048:CNode_1565{[0]: ValueNode<Primitive> Return, [1]: CNode_1564}
+
+
+# ===============================================================================================
+# The total of function graphs in evaluation stack: 1
+# ===============================================================================================
+
+
+# ===============================================================================================
+# The rest function graphs are the following:
+# ===============================================================================================
+No more function graphs.
+
