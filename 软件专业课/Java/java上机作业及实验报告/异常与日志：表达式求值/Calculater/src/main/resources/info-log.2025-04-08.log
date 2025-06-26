@@ -1,0 +1,38 @@
+2025-04-08 22:24:37,256 9265 [main] INFO  Homework.Main - 
+int a=21;
+int b=2;
+float c=11;
+a/b+c=?
+consequence: 21.00
+2025-04-08 22:24:44,219 4509 [main] INFO  Homework.Main - 
+float a=21;
+int b=2;
+float c=11;
+a/b+c=?
+consequence: 21.50
+2025-04-08 22:25:44,194 11233 [main] INFO  Homework.Main - 
+float j;
+float a;
+j=10;
+a=3;
+j/a=?
+consequence: 3.33
+2025-04-08 22:25:56,931 10444 [main] INFO  Homework.Main - 
+float j;
+float a;
+j=10;
+a=3;
+j/a*3=?
+consequence: 10.00
+2025-04-08 22:26:08,774 9512 [main] INFO  Homework.Main - 
+int m=2;
+int j=10;
+m*j=?
+consequence: 20
+2025-04-08 22:26:53,637 17897 [main] INFO  Homework.Main - 
+int i;
+int j;
+i=10;
+j=20;
+i*2+j=?
+consequence: 40

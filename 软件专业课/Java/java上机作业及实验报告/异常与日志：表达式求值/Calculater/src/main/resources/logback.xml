@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds">
+
+    <!-- 定义变量 -->
+    <property name="log.maxSize" value="10MB"/>
+    <property name="log.totalSizeCap" value="10GB"/>
+    <property name="log.dir" value="./Calculater/src/main/resources"/>
+    <property name="log.maxHistory" value="30"/>
+    <property name="append" value="true" /> <!-- 确保追加模式启用 -->
+
+    <appender name="ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 使用 ThresholdFilter 允许 ERROR 及以上级别 -->
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+        <append>${append}</append>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.dir}/error-log.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxFileSize>${log.maxSize}</maxFileSize>
+            <maxHistory>${log.maxHistory}</maxHistory>
+            <totalSizeCap>${log.totalSizeCap}</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d %-4relative [%thread] %-5level %logger - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+
+    <appender name="INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <append>${append}</append>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.dir}/info-log.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxFileSize>${log.maxSize}</maxFileSize>
+            <maxHistory>${log.maxHistory}</maxHistory>
+            <totalSizeCap>${log.totalSizeCap}</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d %-4relative [%thread] %-5level %logger - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="DEBUG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <append>true</append>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>DEBUG</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${log.dir}/debug-log.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <maxFileSize>${log.maxSize}</maxFileSize>
+            <maxHistory>${log.maxHistory}</maxHistory>
+            <totalSizeCap>${log.totalSizeCap}</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d %-4relative [%thread] %-5level %logger - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+
+    <root level="INFO" additivity="false">
+        <!-- 已完全移除 STDOUT 引用 -->
+        <appender-ref ref="DEBUG"/>
+        <appender-ref ref="INFO"/>
+        <appender-ref ref="ERROR"/>
+    </root>
+
+</configuration>

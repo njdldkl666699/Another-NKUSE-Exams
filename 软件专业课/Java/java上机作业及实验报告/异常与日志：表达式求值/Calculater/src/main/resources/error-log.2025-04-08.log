@@ -1,0 +1,22 @@
+2025-04-08 22:24:51,656 4605 [main] ERROR Homework.Main - 
+float a=21;
+int b=2;
+float c=11;
+a/m+c=?
+wrong - variable undefined
+2025-04-08 22:24:58,690 4643 [main] ERROR Homework.Main - 
+float a=21;
+int b=2;
+float c=11;
+(a/b+c=?
+wrong - error expression
+2025-04-08 22:25:12,407 11094 [main] ERROR Homework.Main - 
+int m=2;
+int j=10;
+m+(m-j**2=?
+wrong - error expression
+2025-04-08 22:25:30,275 14691 [main] ERROR Homework.Main - 
+float j
+float a;
+j/a=?
+wrong - variable unassigned
