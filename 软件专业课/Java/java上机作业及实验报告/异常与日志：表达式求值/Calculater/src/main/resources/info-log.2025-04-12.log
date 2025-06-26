@@ -1,5 +1,0 @@
-2025-04-12 00:57:59,515 20546 [main] INFO  Homework.Main - 
-int i=3;
-int j=4;
-j+i=?
-consequence: 7
