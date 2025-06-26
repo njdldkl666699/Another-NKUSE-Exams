@@ -1,0 +1,160 @@
+\documentclass[]{article}
+\usepackage{ctex}
+\usepackage{setspace}
+\usepackage{graphicx}
+%opening
+\title{BST,AVL,BT,RBT性能对比}
+\author{}
+
+\begin{document}
+
+\maketitle
+
+
+\begin{large}
+	\heiti
+	一、 结构说明：
+\end{large}
+\zihao{5}
+
+1. 一般的二叉搜索树（BST）: 
+
+二叉搜索树是一种基于二叉树的数据结构，其中每个节点最多有两个子节点，分别称为左子节点和右子节
+点。对于每个节点，其左子树上的所有节点的键值小于该节点的键值，而右子树上的所有节点的键值大于
+该节点的键值，这是二叉搜索树的关键性质。 
+
+2. AVL 树: 
+
+AVL 树是一种自平衡的二叉搜索树，它在每个节点上维护一个平衡因子，以确保树的左子树和右子树的高
+度差不超过1。平衡性质使得 AVL 树具有较快的查找性能，因为树的高度保持较小。AVL 树通过旋转操作
+来保持平衡，包括左旋、右旋、左右旋和右左旋。比较严格的平衡要求可能导致频繁的旋转操作，影响性
+能。 
+
+3. B 树: 
+
+B 树是一种多路搜索树，每个节点可以包含多个键值和子节点。B 树的节点被设计为可以容纳更多的键值，
+以适应大量的数据。B 树广泛应用于文件系统和数据库系统中，以提供高效的范围查询和高度平衡的树结
+构。 
+
+4. 红黑树: 
+
+红黑树是一种自平衡的二叉搜索树，具有额外的红黑色属性。每个节点都有一个颜色（红色或黑色）并满
+足一组红黑规则，包括根节点和叶子节点（通常是 NIL 节点）是黑色的，相邻节点不能同时为红色等。红
+黑树的平衡性质保证了在树的高度范围内，插入、查找和删除操作的性能。实现相对简单，维护性较好，
+
+\begin{large}
+	\heiti
+	二，算法核心
+\end{large}
+\zihao{5}
+
+1 按递增顺序插入N个整数，随机查找1000个数，按相同顺序删除 
+
+2 按递增顺序插入N个整数，随机查找1000个数，按相反顺序删除 
+
+3 按随机顺序插入N个整数，随机查找1000个数，按随机顺序删除 
+
+N从10000到400000取值，间隔为20000，对比不同树的操作性能 
+
+\begin{large}
+	\heiti
+	三，数据结果 
+\end{large}
+
+\begin{figure}[h]
+	
+	\centering
+	\includegraphics[width=\linewidth]{"C:/Users/the dark/Pictures/Screenshots/屏幕截图 2024-11-24 164944.png"}
+	\caption{乱序插入性能表}
+	\label{fig:enter-label}
+
+		\centering
+	\includegraphics[width=\linewidth]{"C:/Users/the dark/Pictures/Screenshots/屏幕截图 2024-11-24 165431.png"}
+	\caption{顺序插入性能表}
+	\label{fig:enter-label}
+
+	\centering
+\includegraphics[width=\linewidth]{"C:/Users/the dark/Pictures/Screenshots/屏幕截图 2024-11-24 222711.png"}
+\caption{查找性能表}
+\label{fig:enter-label}
+\end{figure}
+\begin{figure}[h]
+	\centering
+\includegraphics[width=\linewidth]{"C:/Users/the dark/Pictures/Screenshots/屏幕截图 2024-11-24 165711.png"}
+\caption{随机删除性能表}
+\label{fig:enter-label}
+
+\end{figure}
+\begin{figure}[h]
+	\centering
+\includegraphics[width=\linewidth]{"C:/Users/the dark/Pictures/Screenshots/屏幕截图 2024-11-26 222909.png"}
+\caption{顺序删除性能表}
+\label{fig:enter-label}
+
+\end{figure}
+\begin{figure}[h]
+	\centering
+\includegraphics[width=\linewidth]{"C:/Users/the dark/Pictures/Screenshots/屏幕截图 2024-11-25 000644.png"}
+\caption{逆序删除性能表}
+\label{fig:enter-label}
+\end{figure}
+
+\zihao{5}
+
+对实验报告最后图表的说明：
+注意到三种插入删除方式有些共通点，故将有共通点的数据进行了合并，如1和2方式的插入均是顺序插入，故将顺序插入的数据放在一张表中取平均值进行制图，查找同理，但查找中BST的随机插入查找和顺序插入查找差距太大，故将BST分为两种情况讨论，BST1是随机插入的随机寻找，BST2是三种插入方式的查找取平均值
+
+由于BST的顺序插入及逆序删除的时间太久，BST的顺序插入查找时间太久，BT的顺序删除的时间太久，故涉及以上数据的表均给出两张图，分别是带以上数据和不带以上数据的图
+
+由于测试的数据由随机数生成器mt19937生成，范围为1到2n（n为数据量），故测试数据中含有重复元素，但几种树使用的是同一组数据，所以不存在哪种树的数据的重复元素更多的情况，但不同数据量组之间的数据会有一定差异，考虑到程序预热，内存分配等情况下面的讨论均对图的趋势做讨论，忽略图中的一些极端数据（表现为图中的某个点突出一个尖）
+
+\begin{large}
+	\heiti
+	四，分析总结
+\end{large}
+\zihao{5}
+
+1， 在顺序递增插入中，由于 BST 插入形成一颗斜着的树，每次插入都是 O（n）
+的时间复杂度，所以所需时间非常非常高久，而AVL需要大量的旋转，所以
+耗费时间比RBT更久，而BT插入需要合并节点，拷贝节点，耗时较久
+
+2， 在随机查找中，若是递增插入，则BST是一颗斜着的树，所耗时间太久。随机插入情况下BST，AVL，RBT三者难舍难分，主要是因为它们都是二叉搜索树，时间复杂度均为logn级，而39w组的数据或许还是太少，没能让AVL控制树高的优势发挥出来
+对于B树，其查找大多是在数组内连续单元访问，比其他树用指针访问的速度更快一些。 
+
+3， 顺序插入后，正向删除，BST因为是一棵斜着的树，每次检索都是检索到的第一个元素，所耗时间是最短的，
+之后是RBT和AVL，原因与插入一样，
+RBT 的旋转调整次数更少，而BT由于删除过于复杂，树的结构不断改变，
+所以是最久的 
+
+4， 顺序插入后逆向删除，BST是最久的，因为每次都要检索到最后一个元素再
+删除。其他三个树与顺序删除是一样的。 
+
+5， 随机插入中，首先
+是RBT，旋转次数很少，所以比BT和AVL都快，而AVL因为需要旋转次数
+太多了，所以比BT需要的更久，而且是随机插入所以AVL需要旋转次数比
+顺序插入更多。 而BST虽然无需任何调整，但其树高不平衡，会比RBT和AVL的平均树高更高，所以插入的总体表现与RBT相似
+
+
+6， AVL最慢，因为随机删除它
+需要多次旋转。最快的仍然是RBT，因为查找本身比BST快
+不少，而删除并不需要很多的旋转，所耗时间最短。 而BT虽然树高低，查找速度快，但它的合并节点等操作依然复杂，故与RBT和BST难舍难分
+
+综上所述：根据实验数据，BST在递增插入、递增插入后随机查找，递增插入
+后递减删除四种情况下性能表现较差，BT在随机插入、随机插入后随机查找、随
+机插入后随机删除四种情况下表现较差，也有可能是数据未在硬盘读取的问题，而
+AVL 与RBT在各种情况下均有良好的性能表现。
+
+\begin{large}
+	\heiti
+	五.原始数据
+\end{large}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=\linewidth]{"C:/Users/the dark/Pictures/Screenshots/屏幕截图 2024-11-26 223325.png"}
+	\caption{原始数据}
+	\label{fig:enter-label}
+\end{figure}
+\zihao{5}
+
+每种树的1为随机插入，随机删除，2为递增插入，顺序删除，3为递增插入，逆序删除，每组数据的第一行是插入，第二行是查找，第三行是删除
+\end{document}
