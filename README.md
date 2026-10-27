@@ -68,9 +68,11 @@ Another-NKUSE-Exams
 
 ---
 
+## Star History
+
 ⭐ **喜欢这个项目？请给我一个 Star！** ⭐
 
-![](https://www.star-history.com/?repos=njdldkl666699%2Fanother-nkuse-exams&type=date&legend=top-left)
+[![Star History Chart](https://api.star-history.com/chart?repos=njdldkl666699/another-nkuse-exams&type=date&legend=top-left)](https://www.star-history.com/?repos=njdldkl666699%2Fanother-nkuse-exams&type=date&legend=top-left)
 
 让更多的南开学子从中受益，一起构建更好的学习社区！💪
 
