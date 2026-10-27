@@ -72,7 +72,13 @@ Another-NKUSE-Exams
 
 ⭐ **喜欢这个项目？请给我一个 Star！** ⭐
 
-[![Star History Chart](https://api.star-history.com/chart?repos=njdldkl666699/another-nkuse-exams&type=date&legend=top-left)](https://www.star-history.com/?repos=njdldkl666699%2Fanother-nkuse-exams&type=date&legend=top-left)
+<a href="https://www.star-history.com/?repos=njdldkl666699%2Fanother-nkuse-exams&type=date&legend=top-left">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=njdldkl666699/another-nkuse-exams&type=date&theme=dark&legend=top-left" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=njdldkl666699/another-nkuse-exams&type=date&legend=top-left" />
+   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=njdldkl666699/another-nkuse-exams&type=date&legend=top-left" />
+ </picture>
+</a>
 
 让更多的南开学子从中受益，一起构建更好的学习社区！💪
 
